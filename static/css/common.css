@@ -33,7 +33,7 @@ input[type="text"]{
     line-height: normal;
     padding: 10px 20px 10px;
   box-sizing: border-box;
-  box-shadow: inset -3px 3px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: inset -3px 3px 4px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
     outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */ -webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */ -moz-appearance: none; appearance: none;
   }
