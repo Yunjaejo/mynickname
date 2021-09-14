@@ -26,7 +26,7 @@
                 return
             }
             else if (user_pw == "") {
-                // alert("비밀번호를 입력하세요")
+                // alert("비밀번호를 입 력하세요")
                 $('#signIn #wrong').text('비밀번호를 입력해줘!')
             }
             $.ajax({
@@ -43,26 +43,32 @@
                         alert("로그인 성공")
                     } else {
                         alert(response['msg'])
+                        $('#signIn #wrong').text('아이디, 또는 비밀번호가 잘못 입력됐어!')
+                        
                         window.location.reload()
                     }
                 }
             })
         }
         function sign_up() {
-            let user_id = $('#user-id').val()
-            let user_pw = $('#user-pw').val()
-            let user_pw2 = $('#user-pw2').val()
+            let user_id = $('#up_user-id').val()
+            let user_pw = $('#up_user-pw').val()
+            let user_pw2 = $('#up_user-pw2').val()
 
             if (user_id == "") {
-                alert("아이디를 입력하세요")
+                // alert("아이디를 입력하세요")
+                $('.suID #wrong').text('아이디를 입력해줘!')
                 return false
             }else if (user_pw == "") {
-                alert("비밀번호를 입력하세요")
+                // alert("비밀번호를 입력하세요")
+                $('.suPW .wrong').text('비밀번호를 입력해줘!')
+                $('.suPW .wrong').css('color','#ff0000')
                 return false
             }else if (user_pw != user_pw2) {
-                alert("비밀번호를 확인하세요")
+                // alert("비밀번호를 확인하세요")
+                $('.suPW2 #wrong').text('비밀번호를 확인해줘!')
                 return false
-            }
+            } 
             $.ajax({
                 type: "POST",
                 url: "/api/sign_up",
@@ -77,6 +83,8 @@
                 }
             })
         }
+
+        if(user_id != ""){$('.suID #wrong').text('')}
     </script>
 
 </head>
@@ -104,7 +112,7 @@
                 </section>
                 <section>
                 <a href="#" id="goToSignUp">회원가입</a>
-                <span class="fontSunflower" id="wrong">아이디, 또는 비밀번호가 잘못 입력됐어!</span>
+                <span class="fontSunflower" id="wrong"></span>
             </section>
                 <button id="login" onclick="sign_in()">LOGIN</button>
             </section>
@@ -116,25 +124,25 @@
                 <div class="suID">
                     <p>ID</p>
                     <div class="textInput">
-                        <input type="text" id="user-id">
+                        <input type="text" id="up_user-id">
                         <button class="textClear"></button>
-                     <span class="fontSunflower " id="wrong">중복된 아이디!</span>
+                     <span class="fontSunflower " id="wrong"></span>
                     </div>
                 </div>
                 <div class="suPW">
                     <p>PW</p>
                     <div class="textInput">
-                        <input type="text" id="user-pw">
+                        <input type="text" id="up_user-pw">
                         <button class="textClear"></button>
                     </div>
-                    <span class="fontSunflower">4자 이상 입력</span>
+                    <span class="fontSunflower wrong">4자 이상 입력</span>
                 </div>
                 <div class="suPW2">
                     <p>PW재확인</p>
                     <div class="textInput">
-                        <input type="text" id="user-pw2">
+                        <input type="text" id="up_user-pw2">
                         <button class="textClear"></button>
-                        <span class="fontSunflower " id="wrong">비밀번호가 일치하지않아!</span>
+                        <span class="fontSunflower " id="wrong"></span>
                     </div>
                 </div>
 
@@ -195,13 +203,6 @@
                     <div>
                         <label class="animal checks">
                             <p>동물</p>
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div>
-                        <label class="object checks">
-                            <p>사물</p>
                             <input type="checkbox">
                             <span class="checkmark"></span>
                         </label>
