@@ -24,7 +24,7 @@ def home():
 # def sign_in():
 #     return render_template('sign_in.html') # 로그인 페이지
 
-@app.route('/index') # 로그인 완료 / 토큰 확인
+@app.route('/') # 로그인 완료 / 토큰 확인
 def sign_ok():
     token_receive = request.cookies.get('mytoken')
     try:
