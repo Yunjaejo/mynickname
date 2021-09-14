@@ -3,41 +3,76 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>메인 페이지</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 이름을 정해줘!</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="../static/js/signIn.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="../static/js/main.js"></script>
     <link rel="stylesheet" href="../static/css/common.css">
     <link rel="stylesheet" href="../static/css/signIn.css">
     <link rel="stylesheet" href="../static/css/main.css">
+
+    <script>
+        function sign_in() {
+            let user_id = $('#user-id').val()
+            let user_pw = $('#user-pw').val()
+
+            if (user_id == "") {
+                alert("아이디를 입력하세요")
+                return
+            }
+            else if (user_pw == "") {
+                alert("비밀번호를 입력하세요")
+            }
+            $.ajax({
+                type: "POST",
+                url: "/api/sign_in",
+                data: {
+                    id_give: $('#user-id').val(),
+                    pw_give: $('#user-pw').val()
+                },
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        $.cookie('mytoken', response['token']);
+                        window.location.replace("/sign_ok")
+                        alert("로그인 성공")
+                    } else {
+                        alert(response['msg'])
+                        window.location.reload()
+                    }
+                }
+            })
+        }
+
+    </script>
     
 </head>
 
 <body>
+
     <article id="signIn">
         <section>
-
             <div>
                 <p>ID</p>
                 <div class="textInput">
-                <input type="text" id="user_id">
-                <button class="textClear"></button>
-            </div>
+                    <input type="text" id="user-id">
+                    <button class="textClear"></button>
+                </div>
             </div>
             <div>
                 <p>PW</p>
                 <div class="textInput">
-                <input type="text" id="user_pw">
-                <button class="textClear"></button>
+                    <input type="text" id="user-pw">
+                    <button class="textClear"></button>
+                </div>
             </div>
-            </div>
-            
-                <a href="#">회원가입</a>
-            
-            <button id="login">LOGIN</button>
-
+            <a href="#">회원가입</a>
+            <button id="login" onclick="sign_in()">LOGIN</button>
         </section>
     </article>
+
     <header>
         <a href="#">마이페이지</a>
     </header>
@@ -68,11 +103,11 @@
                 <p>최대글자수</p>
                 <section>
                     <form oninput="count.value = parseInt(RangeInput.value)">
-                    <input type="range" min="1" max="10" step="" value="5" name="RangeInput">
-                    <div>
-                        <output name='count' for="RangeInput" class="count">5</output>
-                        <p>자</p>
-                    </div>
+                        <input type="range" min="1" max="10" step="" value="5" name="RangeInput">
+                        <div>
+                            <output name='count' for="RangeInput" class="count">5</output>
+                            <p>자</p>
+                        </div>
                     </form>
                 </section>
             </div>
