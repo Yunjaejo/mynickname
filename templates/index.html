@@ -41,7 +41,7 @@
                         $.cookie('mytoken', response['token']);
                         // window.location.replace("/")
                         // alert("로그인 성공")
-                        $('#firstpage').css('display','block');
+                        $('#firstpage').css('display','none');
                     } else {
                         alert(response['msg'])
                         $('#signIn #wrong').text('아이디, 또는 비밀번호가 잘못 입력됐어!')
@@ -85,7 +85,7 @@
             })
         }
 
-        if(user_id != ""){$('.suID #wrong').text('')}
+        
     </script>
 
 </head>
