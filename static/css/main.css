@@ -1,0 +1,180 @@
+@charset "utf-8";
+
+header{
+  position: absolute;
+  top:14px;
+  width: 100vw;
+  max-width: 1194px;
+  text-align: right;
+}
+header a{
+  font-size:1.5rem;
+  margin-right: 3%;
+  
+}
+
+/*content*/
+body,
+#content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#content {
+  width: 62.5%;
+  flex-direction: column;
+  min-width: 800px;
+}
+.myName {
+  font-size: 3rem;
+  text-align: center;
+}
+
+#character img {
+  margin-top: 40px;
+  margin-bottom: 100px;
+}
+
+/*option*/
+
+#option {
+  width: 62.5%;
+}
+.assignWord,
+.maxWord,
+.nounOption {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+}
+.assignWord > p,
+.maxWord > p,
+.nounOption > p {
+  font-size: 2rem;
+  display: inline-block;
+  flex-basis: 25%;
+  line-height: 30px;
+}
+.assignWord > section,
+.maxWord > section,
+.nounOption > section{
+flex-basis: 75%;
+}
+.wordOption p,
+.maxWord section p,.maxWord output,
+label > p {
+  font-size: 1.5rem;
+  display: inline-block;
+}
+
+/* Text input */
+.assignWord .textInput input{
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid #ffffff;
+}
+.assignWord .textInput label{
+  position:absolute;
+  font-size: 1.16rem;
+  margin-top: 11.5px;
+  margin-left: 20px;
+}
+
+.assignWord .textClear {
+  background: url(../img/inputTextClear.svg);
+
+}
+
+.assignWord > p {
+  margin-top: 5px;
+}
+
+.wordOption {
+  text-align: right;
+  margin-top: 10px;
+}
+.wordOption p {cursor: pointer;}
+
+.wordOption .off {opacity: .5;}
+
+.wordOption span {
+    display: inline-block;
+    width: 0px;
+    height: 15px;
+    border: 1px solid #FFFFFF;
+    border-radius: 2px;
+    margin: 0 6px 0 6px;
+    vertical-align: -1.5px;
+}
+
+
+.maxWord section{
+  position: relative;
+  width: 100%;
+}
+.maxWord input{
+    -webkit-appearance: none;
+    width:86%;
+    height: 0px;
+    border-radius: 5px;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border:2px solid #9BB2FF;
+    position: absolute;
+    left:0;
+    top:13px;
+}
+.maxWord input::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #00FFC2;
+            cursor: pointer;
+}
+.maxWord input::-moz-range-thumb{
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #00FFC2;
+            cursor: pointer;
+}
+.maxWord section div {
+  float: right;
+  margin-top: 3.5px;
+}
+.maxWord section div::after{
+  clear: both;
+}
+
+
+.nounOption section > div {
+  width: 60px;
+  height: 23px;
+  display: inline-block;
+  margin-right: 40px;
+  margin-top: 3.4px;
+}
+.nounOption section .checks {
+  width: 60px;
+  height: 23px;
+}
+.nounOption .checks p{
+  position:absolute;
+  color: #fff;
+  left: 0;
+}
+.nounOption .checks .checkmark{
+  left:40px;
+}
+
+#enter {
+  width: 62.5%;
+  height: 60px;
+  font-size: 3rem;
+  background: #1be0ae;
+  border-radius: 15px;
+  margin-top: 56px;
+}
+
+
