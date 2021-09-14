@@ -3,8 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입 페이지</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <script>
+        function sign_up() {
+            let user_id = $('#user-id').val()
+            let user_pw = $('#user-pw').val()
+            let user_pw2 = $('#user-pw2').val()
+
+            if (user_id == "") {
+                alert("아이디를 입력하세요")
+                return false
+            }else if (user_pw == "") {
+                alert("비밀번호를 입력하세요")
+                return false
+            }else if (user_pw != user_pw2) {
+                alert("비밀번호를 확인하세요")
+                return false
+            }
+            $.ajax({
+                type: "POST",
+                url: "/api/sign_up",
+                data: {
+                    id_give: user_id,
+                    pw_give: user_pw,
+                    pw2_give: user_pw2
+                },
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.href = '/sign_in'
+                }
+            })
+        }
+
+    </script>
 </head>
 <body>
-회원가입 페이지
+회원가입 페이지<br>
+id:<input id="user-id" type="text"><br>
+pw:<input id="user-pw" type="text"><br>
+pw2:<input id="user-pw2" type="text"><br>
+<button onclick="sign_up()" type="button">회원가입!</button>
 </body>
 </html>
