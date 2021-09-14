@@ -39,7 +39,7 @@
                 success: function (response) {
                     if (response['result'] == 'success') {
                         $.cookie('mytoken', response['token']);
-                        window.location.replace("/sign_ok")
+                        window.location.replace("/")
                         alert("로그인 성공")
                     } else {
                         alert(response['msg'])
@@ -49,9 +49,9 @@
             })
         }
         function sign_up() {
-            let user_id = $('#user-id').val()
-            let user_pw = $('#user-pw').val()
-            let user_pw2 = $('#user-pw2').val()
+            let user_id = $('#up-user-id').val()
+            let user_pw = $('#up-user-pw').val()
+            let user_pw2 = $('#up-user-pw2').val()
 
             if (user_id == "") {
                 alert("아이디를 입력하세요")
@@ -73,7 +73,7 @@
                 },
                 success: function (response) {
                     alert(response["msg"])
-                    window.location.href = '/sign_in'
+                    window.location.href = '/'
                 }
             })
         }
@@ -116,7 +116,7 @@
                 <div class="suID">
                     <p>ID</p>
                     <div class="textInput">
-                        <input type="text" id="user-id">
+                        <input type="text" id="up-user-id">
                         <button class="textClear"></button>
                      <span class="fontSunflower " id="wrong">중복된 아이디!</span>
                     </div>
@@ -124,7 +124,7 @@
                 <div class="suPW">
                     <p>PW</p>
                     <div class="textInput">
-                        <input type="text" id="user-pw">
+                        <input type="text" id="up-user-pw">
                         <button class="textClear"></button>
                     </div>
                     <span class="fontSunflower">4자 이상 입력</span>
@@ -132,7 +132,7 @@
                 <div class="suPW2">
                     <p>PW재확인</p>
                     <div class="textInput">
-                        <input type="text" id="user-pw2">
+                        <input type="text" id="up-user-pw2">
                         <button class="textClear"></button>
                         <span class="fontSunflower " id="wrong">비밀번호가 일치하지않아!</span>
                     </div>
