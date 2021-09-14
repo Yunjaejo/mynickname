@@ -10,7 +10,7 @@ db = client.hh99_nickname # db연결
 
 
 # import sys
-#
+
 # sys.stdout = open('words_2.txt', 'w',encoding='UTF-8')
 
 
