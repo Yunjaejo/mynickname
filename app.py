@@ -14,15 +14,15 @@ SECRET_KEY = 'TEAM19'
 # html 연결하기
 @app.route('/')
 def home():
-    return render_template('index.html') # 메인 페이지
+    return render_template('index.html') # 메인 페이지(로그인)
 
 # @app.route('/sign_up')
 # def sign_up():
 #     return render_template('sign_up.html') # 회원가입 페이지
 #
-@app.route('/sign_in')
-def sign_in():
-    return render_template('sign_in.html') # 로그인 페이지
+# @app.route('/sign_in')
+# def sign_in():
+#     return render_template('sign_in.html') # 로그인 페이지
 
 @app.route('/') # 로그인 완료 / 토큰 확인
 def sign_ok():
