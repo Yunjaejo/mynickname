@@ -178,3 +178,14 @@ label > p {
 }
 
 
+/* random name result page */
+
+
+.NameResult {
+  color: #00FFC2;
+  font-size: 4rem;
+}
+
+#ResultPage img {
+ height: 400px;
+}
