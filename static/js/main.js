@@ -18,6 +18,7 @@ $(document).ready(function(){
         }else{
             let labelText = `${word}를 원해!`;
             $("label[for='ex_input']").text(labelText);
+            $('#ex_input').removeaAttr('readonly');
             $('#ex_input').attr('readonly',false);
         }
     });
