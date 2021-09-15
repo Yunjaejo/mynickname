@@ -11,7 +11,7 @@
     <script src="../static/js/signUp.js"></script>
     <link rel="stylesheet" href="../static/css/common.css">
     <link rel="stylesheet" href="../static/css/signInUp.css">
-    
+
     <script>
         function sign_in() {
             let user_id = $('#user-id').val()
@@ -25,7 +25,7 @@
             else if (user_pw == "") {
                 // alert("비밀번호를 입 력하세요")
                 $('#signIn #wrong').text('비밀번호를 입력해줘!')
-            } 
+            }
             $.ajax({
                 type: "POST",
                 url: "/api/sign_in",
@@ -36,13 +36,13 @@
                 success: function (response) {
                     if (response['result'] == 'success') {
                         $.cookie('mytoken', response['token']);
-                        window.location.replace("/")
+                        window.location.href = '/get_name'
                         alert("로그인 성공")
-                        
+
                     } else {
                         // alert(response['msg'])
                         $('#signIn #wrong').text('아이디, 또는 비밀번호가 잘못 입력됐어!')
-                        
+
                         window.location.reload()
                     }
                 }
