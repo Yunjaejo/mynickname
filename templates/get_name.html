@@ -15,7 +15,91 @@
 
 
 </head>
+<script>
+    $(document).ready(function() {
 
+        $("input[id=ex_input]").keyup(function (event) {
+
+            regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+            v = $(this).val();
+            if (regexp.test(v)) {
+                alert("한글만 해줄거야!");
+                $(this).val(v.replace(regexp, ''));
+            }
+        });
+    })
+
+    function get_mynick () {
+            $.ajax({
+                    type: "GET",
+                    url: "/get_mynick",
+                    data: {},
+                    success: function (response) {
+                        let noun_words = new Array();
+                        let adj_words = new Array();
+                        let animal_words = new Array();
+                        let fruits_words = new Array();
+
+                        let a = 0
+                        let b = 0
+                        let c = 0
+                        let d = 0
+
+
+                        let nickname = response['all_nickname']
+
+
+                        for (let i = 0; i < nickname.length; i++) {
+
+                            let words_a = nickname[i]['word']
+                            let type = nickname[i]['class']
+
+                            if (type == 'adj') {
+                                a += 1
+                                adj_words[a]=words_a;
+                            } else if(type == 'noun') {
+                                b += 1
+                                noun_words[b]=words_a;
+                            } else if(type == 'animal') {
+                                c += 1
+                                animal_words[c]=words_a;
+                            } else {
+                                d += 1
+                                fruits_words[d]=words_a;
+                            }
+
+                        }
+
+                        let target = $('.on').html()
+                        if (target == '형용사') {
+                            let wish_adj = $('#ex_input').val()
+                            if (wish_adj != '') {
+                                let ran_noun_num = Math.floor(Math.random() * 25416 + 1);
+                                console.log(wish_adj, noun_words[ran_noun_num])
+                            } else {
+                                alert('형용사를 입력해줘!')
+                            }
+                        } else if(target == '명사') {
+                            let wish_noun = $('#ex_input').val()
+                            if (wish_noun != '') {
+                                let ran_adj_num = Math.floor(Math.random() * 181 + 1);
+                                console.log(adj_words[ran_adj_num], wish_noun)
+                            } else {
+                                alert('명사를 입력해줘!')
+                            }
+                        } else {
+                            let ran_adj_num = Math.floor(Math.random() * 181+1);
+                            let ran_noun_num = Math.floor(Math.random() * 25416+1);
+                            console.log(adj_words[ran_adj_num], noun_words[ran_noun_num])
+
+                        }
+
+
+                    }
+            })
+        }
+
+</script>
 <body>
     {% if not token %}
 
@@ -39,7 +123,7 @@
                         <button class="textClear"></button>
                     </div>
                     <div class="wordOption">
-                        <p class="">형용사</p>
+                        <p class="on">형용사</p>
                         <span></span>
                         <p class="off">명사</p>
                         <span></span>
@@ -79,7 +163,7 @@
                 </section>
             </div>
         </section>
-        <button id="enter">ENTER</button>
+        <button onclick="get_mynick()" id="enter">ENTER</button>
     </article>
 
 
