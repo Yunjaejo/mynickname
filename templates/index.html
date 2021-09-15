@@ -84,214 +84,11 @@
             })
         }
 
-        function get_mynick () {
-            $.ajax({
-                    type: "GET",
-                    url: "/get_mynick",
-                    data: {},
-                    success: function (response) {
-                        let noun_words = new Array();
-                        let adj_words = new Array();
-                        let animal_words = new Array();
-                        let fruits_words = new Array();
 
-                        let a = 0
-                        let b = 0
-                        let c = 0
-                        let d = 0
-
-
-                        let nickname = response['all_nickname']
-
-
-                        for (let i = 0; i < nickname.length; i++) {
-
-                            let words_a = nickname[i]['word']
-                            let words_b = nickname[i]['word']
-                            let type = nickname[i]['class']
-
-                            if (type == 'adj') {
-                                a += 1
-                                adj_words[a]=words_a;
-                            } else if(type == 'noun') {
-                                b += 1
-                                noun_words[b]=words_a;
-                            } else if(type == 'animal') {
-                                c += 1
-                                animal_words[c]=words_a;
-                            } else {
-                                d += 1
-                                fruits_words[d]=words_a;
-                            }
-
-                        }
-                    console.log(adj_words[3], noun_words[3])
-                    }
-            })
-        }
-                            // for (let i = 0; i < type.length; i++) {
-                            //     if (type == 'adj') {
-                            //         adj_words = words
-                            //         console.log(adj_words)
-                            // }
-
-
-
-
-
-                                // } else if (type == 'noun' ) {
-                                //     noun = words
-                                // } else if (type == 'animal') {
-                                //     animal = words
-                                // } else {
-                                //     fruits = words
-                                // } console.log(noun, adj, animal, fruits)
-                                // let temp_html = `<div class="card">
-                                //                     <img class="card-img-top"
-                                //                          src="${image}"
-                                //                          alt="Card image cap">
-                                //                     <div class="card-body">
-                                //                         <a target="_blank" href="${url}" class="card-title">${title}</a>
-                                //                         <p class="card-text">${desc}</p>
-                                //                         <p class="card-text comment">${comment}</p>
-                                //                     </div>
-                                //                 </div>`
-                                // $('#cards-box').append(temp_html)
-                        // }
-
-
-
-        
     </script>
 
 </head>
 <body>
-<<<<<<< HEAD
-
-<!--    <article id="firstpage">-->
-<!--        <div id="box">-->
-<!--            <section id="signIn">-->
-<!--                <section>-->
-<!--                    <div>-->
-<!--                        <p>ID</p>-->
-<!--                        <div class="textInput">-->
-<!--                            <input type="text" id="user-id">-->
-<!--                            <button class="textClear"></button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <p>PW</p>-->
-<!--                        <div class="textInput">-->
-<!--                            <input type="text" id="user-pw">-->
-<!--                            <button class="textClear"></button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </section>-->
-<!--                <section>-->
-<!--                <a href="#" id="goToSignUp">회원가입</a>-->
-<!--                <span class="fontSunflower" id="wrong"></span>-->
-<!--            </section>-->
-<!--                <button id="login" onclick="sign_in()">LOGIN</button>-->
-<!--            </section>-->
-
-<!--            <section id="signUp">-->
-<!--                -->
-<!--                    <button class="back"></button>-->
-<!--                -->
-<!--                <div class="suID">-->
-<!--                    <p>ID</p>-->
-<!--                    <div class="textInput">-->
-<!--                        <input type="text" id="up-user-id">-->
-<!--                        <button class="textClear"></button>-->
-<!--                     <span class="fontSunflower " id="wrong"></span>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="suPW">-->
-<!--                    <p>PW</p>-->
-<!--                    <div class="textInput">-->
-<!--                        <input type="text" id="up-user-pw">-->
-<!--                        <button class="textClear"></button>-->
-<!--                    </div>-->
-<!--                    <span class="fontSunflower wrong">4자 이상 입력</span>-->
-<!--                </div>-->
-<!--                <div class="suPW2">-->
-<!--                    <p>PW재확인</p>-->
-<!--                    <div class="textInput">-->
-<!--                        <input type="text" id="up-user-pw2">-->
-<!--                        <button class="textClear"></button>-->
-<!--                        <span class="fontSunflower " id="wrong"></span>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <button id="signUpbutton" onclick="sign_up()">회원가입</button>-->
-<!--            </section>-->
-<!--        </div>-->
-<!--    </article>-->
-
-
-    <header>
-        <a href="#">마이페이지</a>
-    </header>
-    <article id="content">
-        <section id="character">
-            <p class="myName">내 이름을 정해줘!</p>
-            <img src="../static/img/CHAR.svg" alt="character image">
-        </section>
-        <section id="option">
-            <div class="assignWord">
-                <p>고정단어</p>
-                <section>
-                    <div class="textInput">
-                        <label for="ex_input">형용사를 원해!</label>
-                        <input type="text" id="ex_input">
-                        <button class="textClear"></button>
-                    </div>
-                    <div class="wordOption">
-                        <p class="">형용사</p>
-                        <span></span>
-                        <p class="off">명사</p>
-                        <span></span>
-                        <p class="off">완전랜덤</p>
-                    </div>
-                </section>
-            </div>
-            <div class="maxWord">
-                <p>최대글자수</p>
-                <section>
-                    <form oninput="count.value = parseInt(RangeInput.value)">
-                        <input type="range" min="1" max="10" step="" value="5" name="RangeInput">
-                        <div>
-                            <output name='count' for="RangeInput" class="count">5</output>
-                            <p>자</p>
-                        </div>
-                    </form>
-                </section>
-            </div>
-            <div class='nounOption'>
-                <p>명사종류</p>
-                <section>
-                    <div>
-                        <label class="furuit checks">
-                            <p>과일</p>
-                            <input id="fruits_check" type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div>
-                        <label class="animal checks">
-                            <p>동물</p>
-                            <input id="animal_check" type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </section>
-            </div>
-        </section>
-        <button onclick="get_mynick()" id="enter">ENTER</button>
-    </article>
-
-
-=======
     <h1>내 이름을 정해줘!</h1>
     <article id="firstpage">
         <div id="box">
@@ -320,9 +117,9 @@
         </section>
 
         <section id="signUp">
-                
+
                     <button class="back"></button>
-                
+
                 <div class="suID">
                     <p>ID</p>
                     <div class="textInput">
@@ -352,6 +149,5 @@
             </section>
         </div>
     </article>
->>>>>>> 2155fb6444a5dc04da4e4647c409e1f5d254ba11
 </body>
 </html>
