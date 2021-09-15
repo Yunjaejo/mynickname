@@ -48,7 +48,15 @@ $(document).ready(function(){
         $(this).siblings('label').click();
     });
 
-        
+    $('.checks input').click(function(){
+
+        if($(this).hasClass('on')){
+            $(this).removeClass('on');
+        }else{
+            $(this).addClass('on');
+        }
+
+    });
 
 
     
