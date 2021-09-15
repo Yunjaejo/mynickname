@@ -9,30 +9,45 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    
-
+    <script src="../static/js/showName.js"></script>
     <link rel="stylesheet" href="../static/css/common.css">
     <link rel="stylesheet" href="../static/css/main.css">
+
+    
 </head>
 
 <body>
-
-
-
     <header>
         <a href="#">마이페이지</a>
     </header>
+
+    <section id="saveName">
+        <div id="box">
+            <button class="close"></button>
+            <div>
+            <p>마이페이지에 '<span class="saveAlert"></span>' 를 저장했다!</p>
+        </div>
+        </div>
+    </section>
+
     <article id="content">
+        
         <section id="ResultPage">
             <p class="NameResult">무시무시한 감자</p>
             <img src="../static/img/CHAR.svg" alt="character image">
 
             <div class="textBox">
                 <p>이 이름이 마음에 드니?</p>
+                
+                <div>
                 <ul>
-                    <li class="off">> 응!</li>
-                    <li class="off">> 아니!</li>
+                    <li class="off saveToMyPage"> <span>></span> 응, 저장할래! </li>
+                    <li class="off Clip"> <span>></span> 응, 바로 복사할래! </li>
+                    <input id="textbox-url" value="여기에복사할 내용 넣기" />
+                    <li class="off Reset"> <span>></span> 아니, 처음부터 다시할래! </li>
+                    <li class="off Retry"> <span>></span> 아니, 같은 설정으로 다시 정해줘! </li>
                 </ul>
+            </div>
             </div>
         </section>
         

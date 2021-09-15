@@ -67,7 +67,6 @@
                                 d += 1
                                 fruits_words[d]=words_a;
                             }
-
                         }
 
                         let target = $('.on').html()
@@ -90,8 +89,8 @@
                         } else {
                             let ran_adj_num = Math.floor(Math.random() * 181+1);
                             let ran_noun_num = Math.floor(Math.random() * 25416+1);
-                            console.log(adj_words[ran_adj_num], noun_words[ran_noun_num])
-
+                            console.log(adj_words[ran_adj_num], noun_words[ran_noun_num]);
+                            window.location.href="/show_myname";
                         }
 
 
@@ -135,7 +134,7 @@
                 <p>최대글자수</p>
                 <section>
                     <form oninput="count.value = parseInt(RangeInput.value)">
-                        <input type="range" min="1" max="10" step="" value="5" name="RangeInput">
+                        <input type="range" min="3" max="12" step="" value="5" name="RangeInput">
                         <div>
                             <output name='count' for="RangeInput" class="count">5</output>
                             <p>자</p>

@@ -62,6 +62,7 @@ def get_mynick():
 
 
 
+
 # 기능 구현(회원가입)
 @app.route('/api/sign_up', methods=['POST'])
 def api_sign_up():
