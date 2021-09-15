@@ -75,6 +75,7 @@
                             if (wish_adj != '') {
                                 let ran_noun_num = Math.floor(Math.random() * 25416 + 1);
                                 console.log(wish_adj, noun_words[ran_noun_num])
+                                window.location.href="/show_myname";
                             } else {
                                 alert('형용사를 입력해줘!')
                             }
@@ -83,6 +84,7 @@
                             if (wish_noun != '') {
                                 let ran_adj_num = Math.floor(Math.random() * 181 + 1);
                                 console.log(adj_words[ran_adj_num], wish_noun)
+                                window.location.href="/show_myname";
                             } else {
                                 alert('명사를 입력해줘!')
                             }

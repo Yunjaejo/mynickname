@@ -17,9 +17,9 @@ SECRET_KEY = 'TEAM19'
 def home():
     return render_template('index.html') # 메인 페이지(로그인)
 
-# @app.route('/sign_up')
-# def sign_up():
-#     return render_template('sign_up.html') # 회원가입 페이지
+@app.route('/show_myname')
+def sign_up():
+    return render_template('show_myname.html') # 회원가입 페이지
 #
 # @app.route('/sign_in')
 # def sign_in():
