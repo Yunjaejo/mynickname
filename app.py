@@ -28,13 +28,11 @@ def home():
 def sign_ok():
     token_receive = request.cookies.get('mytoken')
     try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.usersdb.find_one({"id": payload['id']})
         return render_template('index.html', token_receive=request.cookies.get('mytoken'))
     except jwt.ExpiredSignatureError:
-        return redirect(url_for("sign_in", msg="로그인 시간이 만료되었습니다."))
+        return redirect(url_for("/", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("sign_in", msg="로그인 정보가 존재하지 않습니다."))
+        return redirect(url_for("/", msg="로그인 정보가 존재하지 않습니다."))
 
 @app.route('/get_name')
 def get_name():
@@ -85,15 +83,14 @@ def api_sign_in():
     if user_info is not None:
         payload = {
             'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=30)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=10)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
-
-        return jsonify({'result': 'success', 'token': token, 'data': user_info['id']})
-
+        return jsonify({'result': 'success', 'token': token, 'data': user_info['id']}) # 토큰 부여
+        return render_template('get_name.html', token)
     else:
-        return jsonify({'result': 'fail', 'msg': '아이디나 패스워드를 확인하세요'})
+        return jsonify({'result': 'fail', 'msg': '아이디나 패스워드를 확인하세요'}) # 유저정보없으면 토큰X
 
 # 기능 구현 (토큰 확인)
 @app.route('/api/sign_ok', methods=['GET'])
