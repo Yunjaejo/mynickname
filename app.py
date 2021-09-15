@@ -3,8 +3,8 @@ app = Flask(__name__) # 플라스크 임포트
 
 from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
-# db = client.hh99_nickname # db연결
-db = client.nickname
+db = client.hh99_nickname # db연결
+# db = client.nickname
 
 import jwt
 import datetime
