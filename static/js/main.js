@@ -6,8 +6,8 @@ $(document).ready(function(){
     $(wordOption).click(function(){
 
         if($(this).hasClass('off')){
-            $(this).removeClass('off');
-            $(this).siblings('p').addClass('off');
+            $(this).removeClass('off').addClass('on');
+            $(this).siblings('p').addClass('off').removeClass('on');
         }
         let word = $(this).text();
         if(word == '완전랜덤'){
