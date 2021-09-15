@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="../static/css/main.css">
 
     <script>
+
+
         function sign_in() {
             let user_id = $('#user-id').val()
             let user_pw = $('#user-pw').val()
@@ -38,10 +40,10 @@
                 },
                 success: function (response) {
                     if (response['result'] == 'success') {
-                        $.cookie('mytoken', response['token']);
                         // window.location.replace("/")
                         // alert("로그인 성공")
-                        $('#firstpage').css('display','block');
+                        $.cookie('mytoken', response['token']);
+                        $('#firstpage').css('display','none');
                     } else {
                         alert(response['msg'])
                         $('#signIn #wrong').text('아이디, 또는 비밀번호가 잘못 입력됐어!')
@@ -85,12 +87,17 @@
             })
         }
 
-        if(user_id != ""){$('.suID #wrong').text('')}
+        
     </script>
 
 </head>
 
 <body>
+    {% if token_check1 == True %}
+    <p>$('#firstpage').css('display','none');</p>
+    {% endif %}
+
+
 
     <article id="firstpage">
         <div id="box">
