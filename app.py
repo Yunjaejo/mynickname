@@ -20,9 +20,9 @@ def home():
 # def sign_up():
 #     return render_template('sign_up.html') # 회원가입 페이지
 #
-# @app.route('/sign_in')
-# def sign_in():
-#     return render_template('sign_in.html') # 로그인 페이지
+@app.route('/sign_in')
+def sign_in():
+    return render_template('sign_in.html') # 로그인 페이지
 
 @app.route('/index') # 로그인 완료 / 토큰 확인
 def sign_ok():
