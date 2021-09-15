@@ -6,8 +6,9 @@ $(document).ready(function(){
     $(wordOption).click(function(){
 
         if($(this).hasClass('off')){
-            $(this).removeClass('off');
-            $(this).siblings('p').addClass('off');
+            $(this).removeClass('off').addClass('on');
+            $(this).siblings('p').addClass('off').removeClass('on');
+            
         }
         let word = $(this).text();
         if(word == '완전랜덤'){
@@ -17,7 +18,7 @@ $(document).ready(function(){
         }else{
             let labelText = `${word}를 원해!`;
             $("label[for='ex_input']").text(labelText);
-            $('#ex_input').removeaAttr('readonly');
+            $('#ex_input').attr('readonly',false);
         }
     });
 

@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내 이름을 정해줘!</title>
+    <title>내 이름을 정해줘! | 로그인</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script src="../static/js/main.js"></script>
     <script src="../static/js/signUp.js"></script>
     <link rel="stylesheet" href="../static/css/common.css">
     <link rel="stylesheet" href="../static/css/signInUp.css">
-    <link rel="stylesheet" href="../static/css/main.css">
 
     <script>
         function sign_in() {
@@ -39,13 +36,13 @@
                 success: function (response) {
                     if (response['result'] == 'success') {
                         $.cookie('mytoken', response['token']);
-                        // window.location.replace("/")
-                        // alert("로그인 성공")
-                        $('#firstpage').css('display','none');
+                        window.location.href = '/get_name'
+                        alert("로그인 성공")
+
                     } else {
-                        alert(response['msg'])
+                        // alert(response['msg'])
                         $('#signIn #wrong').text('아이디, 또는 비밀번호가 잘못 입력됐어!')
-                        
+
                         window.location.reload()
                     }
                 }
@@ -69,7 +66,9 @@
                 // alert("비밀번호를 확인하세요")
                 $('.suPW2 #wrong').text('비밀번호를 확인해줘!')
                 return false
-            } 
+            }else if (user_id){
+
+            }
             $.ajax({
                 type: "POST",
                 url: "/api/sign_up",
@@ -166,8 +165,8 @@
     </script>
 
 </head>
-
 <body>
+<<<<<<< HEAD
 
 <!--    <article id="firstpage">-->
 <!--        <div id="box">-->
@@ -292,6 +291,67 @@
     </article>
 
 
-</body>
+=======
+    <h1>내 이름을 정해줘!</h1>
+    <article id="firstpage">
+        <div id="box">
+            <section id="signIn">
+                <section>
+                    <div>
+                        <p>ID</p>
+                        <div class="textInput">
+                            <input type="text" id="user-id">
+                            <button class="textClear"></button>
+                        </div>
+                    </div>
+                    <div>
+                        <p>PW</p>
+                        <div class="textInput">
+                            <input type="text" id="user-pw">
+                            <button class="textClear"></button>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                <a href="#" id="goToSignUp">회원가입</a>
+                <span class="fontSunflower" id="wrong"></span>
+            </section>
+                <button id="login" onclick="sign_in()">LOGIN</button>
+        </section>
 
+        <section id="signUp">
+                
+                    <button class="back"></button>
+                
+                <div class="suID">
+                    <p>ID</p>
+                    <div class="textInput">
+                        <input type="text" id="up-user-id">
+                        <button class="textClear"></button>
+                     <span class="fontSunflower " id="wrong"></span>
+                    </div>
+                </div>
+                <div class="suPW">
+                    <p>PW</p>
+                    <div class="textInput">
+                        <input type="text" id="up-user-pw">
+                        <button class="textClear"></button>
+                    </div>
+                    <span class="fontSunflower wrong">4자 이상 입력</span>
+                </div>
+                <div class="suPW2">
+                    <p>PW재확인</p>
+                    <div class="textInput">
+                        <input type="text" id="up-user-pw2">
+                        <button class="textClear"></button>
+                        <span class="fontSunflower " id="wrong"></span>
+                    </div>
+                </div>
+
+                <button id="signUpbutton" onclick="sign_up()">회원가입</button>
+            </section>
+        </div>
+    </article>
+>>>>>>> 2155fb6444a5dc04da4e4647c409e1f5d254ba11
+</body>
 </html>
