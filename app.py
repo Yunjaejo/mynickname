@@ -3,7 +3,8 @@ app = Flask(__name__) # 플라스크 임포트
 
 from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
-db = client.hh99_nickname # db연결
+# db = client.hh99_nickname # db연결
+db = client.nickname
 
 import jwt
 import datetime
@@ -53,6 +54,12 @@ def delete_myname():
     return render_template('delete_myname.html') # 닉네임 삭제 페이지
 
 # html 연결하기 끝
+
+@app.route('/get_mynick', methods=['GET'])
+def get_mynick():
+    # nickname = list(db.hh99_nickname.find({'class':'adj'}, {'_id': False})) # 윤재님 DB
+    nickname = list(db.wordsdb.find({}, {'_id': False}))    # 우석 개인 DB
+    return jsonify({'all_nickname': nickname})
 
 
 
