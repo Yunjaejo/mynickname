@@ -8,10 +8,10 @@ header{
   text-align: right;
   z-index: 10000;
 }
+
 header a{
   font-size:1.5rem;
   margin-right: 3%;
-  
 }
 
 header a:hover{
@@ -19,17 +19,18 @@ header a:hover{
 }
 
 /*content*/
-body,
-#GetPage {
+body,#GetPage {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #GetPage {
   width: 62.5%;
   flex-direction: column;
   min-width: 800px;
 }
+
 .myName {
   font-size: 3rem;
   text-align: center;
@@ -86,7 +87,6 @@ label > p {
 
 .assignWord .textClear {
   background: url(../img/inputTextClear.svg);
-
 }
 
 .assignWord > p {
