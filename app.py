@@ -4,7 +4,6 @@ app = Flask(__name__) # 플라스크 임포트
 from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
 db = client.hh99_nickname # db연결
-# db = client.nickname
 
 import jwt
 import datetime
@@ -17,13 +16,15 @@ SECRET_KEY = 'TEAM19'
 def home():
     return render_template('Login.html') # 메인 페이지(로그인)
 
-@app.route('/show_myname')
-def sign_up():
-    return render_template('ChooseMyname.html') # 회원가입 페이지
-#
-# @app.route('/sign_in')
-# def sign_in():
-#     return render_template('sign_in.html') # 로그인 페이지
+@app.route('/ChooseMyname')
+def get_name():
+    return render_template('ChooseMyname.html') # 닉네임 생성 페이지
+
+@app.route('/myPage')
+def get_myname():
+    return render_template('myPage.html') # 마이 페이지
+
+# html 연결하기 끝
 
 @app.route('/') # 로그인 완료 / 토큰 확인
 def sign_ok():
@@ -36,36 +37,13 @@ def sign_ok():
     except jwt.exceptions.DecodeError:
         return redirect(url_for(sign_ok, msg="로그인 정보가 존재하지 않습니다."))
 
-@app.route('/ChooseMyname')
-def get_name():
-    return render_template('ChooseMyname.html') # 닉네임 생성 페이지
-
-@app.route('/post_myname')
-def post_myname():
-    return render_template('post_myname.html') # 닉네임 즐겨찾기 추가하기
-
-@app.route('/myPage')
-def get_myname():
-    return render_template('myPage.html') # 마이 페이지
-
-@app.route('/myPage')
-def delete_myname():
-    return render_template('myPage.html') # 닉네임 삭제 페이지
-
-# html 연결하기 끝
-
 @app.route('/get_mynick', methods=['GET'])
 def get_mynick():
     # nickname = list(db.hh99_nickname.find({'class':'adj'}, {'_id': False})) # 윤재님 DB
     nickname = list(db.wordsdb.find({}, {'_id': False}))    # 우석 개인 DB
     return jsonify({'all_nickname': nickname})
 
-
-
-
-
-# 기능 구현(회원가입)
-@app.route('/api/sign_up', methods=['POST'])
+@app.route('/api/sign_up', methods=['POST']) # 회원가입 기능
 def api_sign_up():
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give']
