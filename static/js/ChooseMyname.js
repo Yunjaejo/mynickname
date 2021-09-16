@@ -1,5 +1,14 @@
 $(document).ready(function () {
 
+    $("input[id=ex_input]").keyup(function (event) {
+        regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+        v = $(this).val();
+        if (regexp.test(v)) {
+            alert("한글만 해줄거야!");
+            $(this).val(v.replace(regexp, ''));
+        }
+    });
+
 //귀여운거^^
     $('#enter').mouseover(function () {
         $('#character img').attr('src', '../static/img/cuteCHAR.svg');

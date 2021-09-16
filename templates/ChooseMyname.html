@@ -45,9 +45,7 @@
                     let animal_count = 0                      
                     let fruits_count = 0                       
 
-
                     let nickname = response['all_nickname']
-
 
                     for (let i = 0; i < nickname.length; i++) {
 
@@ -84,33 +82,32 @@
                         $('.saveAlert').text($('.NameResult').text());
                     }
 
-                    if (target == '형용사') {                                                          
-                        let wish_adj = $('#ex_input').val()                                            
+                    function mathRandom(a){
+                        return Math.floor(Math.random() * a + 1);
+                    }
+
+                    if (target == '형용사') {                                                           
+                        let wish_adj = $('#ex_input').val() 
+                        let boolean = Boolean(wish_adj != '');                                           
                         if (animal_check != true) {
                             if (fruits_check != true) {
-                                if (wish_adj != '') {                                                  
-                                    let ran_noun_num = Math.floor(Math.random() * 25416 + 1);          
+                                if (boolean) {                                                  
+                                    let ran_noun_num = mathRandom(25416);         
                                     let adj_len1 = wish_adj.length                                     
                                     let noun_len1 = noun_words[ran_noun_num].length                    
                                     if (adj_len1 + noun_len1 <= word_counting) {                       
-                                        console.log(adj_len1, noun_len1, adj_len1 + noun_len1)
-                                        console.log(wish_adj, noun_words[ran_noun_num])
                                         ResultName = wish_adj+' ' +noun_words[ran_noun_num];
                                         goToResult();
                                     }
-
                                 } else {
                                     alert('형용사를 입력해줘!')
                                 }
                             } else {
-                                if (wish_adj != '') {                                                  
-                                    let ran_fruits_num = Math.floor(Math.random() * 51 + 1);           
+                                if (boolean) {                                                  
+                                    let ran_fruits_num = mathRandom(51);           
                                     let adj_len2 = wish_adj.length                                     
                                     let fruits_len2 = fruits_words[ran_fruits_num].length              
                                     if (adj_len2 + fruits_len2 <= word_counting) {                     
-                                        console.log(adj_len2, fruits_len2, adj_len2 + fruits_len2)
-                                        console.log(wish_adj, fruits_words[ran_fruits_num])
-                                        console.log(ran_fruits_num, adj_len2, fruits_len2, fruits_words[ran_fruits_num])
                                         ResultName = wish_adj+' ' +fruits_words[ran_fruits_num];
                                         goToResult();
                                     }
@@ -120,14 +117,11 @@
                             }
                         } else {
                             if (fruits_check != true) {
-                                if (wish_adj != '') {                                                   
-                                    let ran_animal_num = Math.floor(Math.random() * 141 + 1);           
+                                if (boolean) {                                                   
+                                    let ran_animal_num =mathRandom(141);           
                                     let adj_len3 = wish_adj.length                                      
                                     let animal_len3 = animal_words[ran_animal_num].length               
                                     if (adj_len3 + animal_len3 <= word_counting) {                      
-                                        console.log(adj_len3, animal_len3, adj_len3 + animal_len3)
-                                        console.log(wish_adj, animal_words[ran_animal_num])
-                                        console.log(ran_animal_num, adj_len3, animal_len3, animal_words[ran_animal_num])
                                         ResultName = wish_adj+' ' +animal_words[ran_animal_num];
                                         goToResult();
                                     }
@@ -135,14 +129,11 @@
                                     alert('형용사를 입력해줘!')
                                 }
                             } else {
-                                if (wish_adj != '') {                                                   
-                                    let ran_ani_fru_num = Math.floor(Math.random() * 192 + 1);          
+                                if (boolean) {                                                   
+                                    let ran_ani_fru_num = mathRandom(192);          
                                     let adj_len4 = wish_adj.length                                     
                                     let ani_fru_len4 = animal_fruits_words[ran_ani_fru_num].length      
                                     if (adj_len4 + ani_fru_len4 <= word_counting) {                     
-                                        console.log(adj_len4, ani_fru_len4, adj_len4 + ani_fru_len4)
-                                        console.log(wish_adj, animal_fruits_words[ran_ani_fru_num])
-                                        console.log(ran_ani_fru_num, adj_len4, ani_fru_len4, animal_fruits_words[ran_ani_fru_num])
                                         ResultName = wish_adj+' ' +animal_fruits_words[ran_ani_fru_num];
                                         goToResult();
                                     }
@@ -151,44 +142,32 @@
                                 }
                             }
                         }
-
                     } else if (target == '명사') {                                                        
                         let wish_noun = $('#ex_input').val()                                             
                         if (wish_noun != '') {                                                           
-                        let ran_adj_num = Math.floor(Math.random() * 181 + 1);                           
+                        let ran_adj_num = mathRandom(181);                           
                         let adj_len5 = adj_words[ran_adj_num].length                                     
                         let noun_len5 = wish_noun.length                                                 
-                        if (adj_len5 + noun_len5 <= word_counting) {                                     
-                            console.log(adj_len5, noun_len5, adj_len5 + noun_len5)
-                            console.log(adj_words[ran_adj_num], wish_noun);
-                            ResultName = adj_words[ran_adj_num]+' ' +wish_noun;
-                            goToResult();
-                        }
+                            if (adj_len5 + noun_len5 <= word_counting) {                                     
+                                ResultName = adj_words[ran_adj_num]+' ' +wish_noun;
+                                goToResult();
+                            }
                         } else {
                             alert('명사를 입력해줘!')
                         }
                     } else {                                                                              
-                        let ran_adj_num = Math.floor(Math.random() * 181 + 1);                            
-                        let ran_noun_num = Math.floor(Math.random() * 25416 + 1);                         
+                        let ran_adj_num = mathRandom(181);                            
+                        let ran_noun_num = mathRandom(25416);                         
                         let adj_len6 = adj_words[ran_adj_num].length                                      
                         let noun_len6 = noun_words[ran_noun_num].length                                   
                         if (adj_len6 + noun_len6 <= word_counting) {                                      
-                            console.log(adj_len6, noun_len6, adj_len6 + noun_len6)
-                            console.log(adj_words[ran_adj_num], noun_words[ran_noun_num]);
                             ResultName = adj_words[ran_adj_num] +' ' + noun_words[ran_noun_num];
-                            console.log(adj_words[ran_adj_num], noun_words[ran_noun_num]);
                             goToResult();
-                        }
-                        
-                        
-                        
+                        } 
                     }
                 }
-
-
             }
-        )
-    }  
+        )}  
 
 
 
