@@ -67,7 +67,7 @@ let resultName = $('.NameResult').text();
 
 //저장하기
 $('.saveToMyPage').click(function(){
-    $('.saveAlert').text(resultName);
+    
     $('#saveName').css('display','flex');
 });
 
