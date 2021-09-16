@@ -1,52 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../static/css/common.css">
-    <link rel="stylesheet" href="../static/css/mypage.css">
-    <script src="../static/js/mypage.js"></script>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin="crossorigin">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+            rel="stylesheet">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../static/css/common.css">
+        <link rel="stylesheet" href="../static/css/mypage.css">
+        <script src="../static/js/mypage.js"></script>
 
-</head>
+        <script>
 
-<body>
+            $.ajax({type: "GET", url: "", data: {}, success: function (response) {}})
 
-    <a href="/ChooseMyname" id="GoToChoose">내 이름을 정해줘</a>
+            $('.ListDel').click(function () {
 
-    <section class="MyPageBox">
+                $.ajax({type: "POST", url: "", data: {}, success: function (response) {}})
+                location.reload();
+            });
+        </script>
 
-        <p class="thisPlace">>마이페이지</p>
+    </head>
 
-        <div class="title">
-            <span class="highlignt"></span>
-            <h1>나의 닉네임들</h1>
-            
-        </div>
+    <body>
+        <article>
+            <a href="/ChooseMyname" id="GoToChoose">내 이름을 정해줘</a>
 
-        <section id="NameList">
+            <section class="MyPageBox">
 
-            <ul>
-                <li>
-                    <p id="ListSavedName">무시무시한 감자</p>
-                    <div>
-                        <button class="ListCopy">복사</button>
-                        <button class="ListDel">삭제</button>
-                    </div>
-                    <span class="line"></span>
-                </li>
+                <p class="thisPlace">>마이페이지</p>
 
-            </ul>
-        </section>
+                <div class="title">
+                    <span class="highlignt"></span>
+                    <h1>나의 닉네임들</h1>
 
+                </div>
+                <p class="can">8개까지만 저장할 수 있어!</p>
+                <section id="NameList">
 
-    </section>
+                    <ul>
+                        <li>
+                            <p id="ListSavedName">무시무시한 감자</p>
+                            <div>
+                                <button class="ListCopy">복사</button>
+                                <button class="ListDel">삭제</button>
+                            </div>
+                            <span class="line"></span>
+                        </li>
+                        <li>
+                            <p id="ListSavedName">무시무시한 감자</p>
+                            <div>
+                                <button class="ListCopy">복사</button>
+                                <button class="ListDel">삭제</button>
+                            </div>
+                            <span class="line"></span>
+                        </li>
+                        <li>
+                            <p id="ListSavedName">무시무시한 감자</p>
+                            <div>
+                                <button class="ListCopy">복사</button>
+                                <button class="ListDel">삭제</button>
+                            </div>
+                            <span class="line"></span>
+                        </li>
+                        <li>
+                            <p id="ListSavedName">무시무시한 감자</p>
+                            <div>
+                                <button class="ListCopy">복사</button>
+                                <button class="ListDel">삭제</button>
+                            </div>
+                            <span class="line"></span>
+                        </li>
+                        <li>
+                            <p id="ListSavedName">무시무시한 감자</p>
+                            <div>
+                                <button class="ListCopy">복사</button>
+                                <button class="ListDel">삭제</button>
+                            </div>
+                            <span class="line"></span>
+                        </li>
+                        <li>
+                            <p id="ListSavedName">무시무시한 감자</p>
+                            <div>
+                                <button class="ListCopy">복사</button>
+                                <button class="ListDel">삭제</button>
+                            </div>
+                            <span class="line"></span>
+                        </li>
+                        <li>
+                            <p id="ListSavedName">무시무시한 감자</p>
+                            <div>
+                                <button class="ListCopy">복사</button>
+                                <button class="ListDel">삭제</button>
+                            </div>
+                            <span class="line"></span>
+                        </li>
+                        <li>
+                            <p id="ListSavedName">무시무시한 감자</p>
+                            <div>
+                                <button class="ListCopy">복사</button>
+                                <button class="ListDel">삭제</button>
+                            </div>
+                            <span class="line"></span>
+                        </li>
 
+                    </ul>
+                </section>
 
-
-
-
-</body>
+            </section>
+        </article>
+    </body>
