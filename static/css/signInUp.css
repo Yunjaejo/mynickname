@@ -9,6 +9,7 @@ h1{
     font-size: 4rem;
     top:200px;
     z-index: 100;
+   
 }
 
 #firstpage {
@@ -77,7 +78,9 @@ h1{
 }
 #wrong{
     color:#FF0000;
-    font-size: 1rem;  
+    font-size: 1rem; 
+    height: 1rem;
+    display: block; 
 }
 
 #login, #signUpbutton{
@@ -89,6 +92,12 @@ h1{
 }
 #login{background: #1BE0AE;}
 #signUpbutton {background: #3864FF}
+
+
+
+#login:hover{
+    box-shadow: inset 2px 2px 5px #2f937a ;
+}
 
 #signUp .fontSunflower {
     display: block;

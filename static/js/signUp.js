@@ -20,4 +20,15 @@ $('#signUp .back').click(function(){
     
 });
 
+$('.suID input').on("change keyup paste", function(){
+    $('.suID #wrong').css('opacity','0');
+})
+$('.suPW input').on("change keyup paste", function(){
+    $('.suPW .wrong').css('opacity','0');
+})
+
+
+
+
+
 });

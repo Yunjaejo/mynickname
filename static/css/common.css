@@ -27,7 +27,7 @@ font-family: 'Sunflower',sans-serif;
     position: relative;
 }
 
-input[type="text"]{
+input[type="text"], input[type="password"]{
     width: 100%;
     height: auto;
     line-height: normal;
@@ -86,4 +86,21 @@ input[type="text"]{
   }/*체크시 체크전 박스 제거*/
   
 
-  
+
+
+@keyframes buttonAni {
+  0%{transform: scale(1);}
+  50%{transform: scale(.9);}
+  100%{transform: scale(1);}
+}
+.buttonGradientAni {
+  animation: buttonAni 3s ease infinite;
+} 
+
+@keyframes ShowResult {
+  0%{transform: scale(0);}
+  100%{transform: scale(1);}
+}
+.ShowAni {
+  animation: ShowResult 2s ease;
+}
