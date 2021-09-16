@@ -44,13 +44,13 @@ def get_name():
 def post_myname():
     return render_template('post_myname.html') # 닉네임 즐겨찾기 추가하기
 
-@app.route('/ChooseMyname')
+@app.route('/myPage')
 def get_myname():
     return render_template('myPage.html') # 마이 페이지
 
-@app.route('/delete_myname')
+@app.route('/myPage')
 def delete_myname():
-    return render_template('delete_myname.html') # 닉네임 삭제 페이지
+    return render_template('myPage.html') # 닉네임 삭제 페이지
 
 # html 연결하기 끝
 

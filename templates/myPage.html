@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../static/css/common.css">
     <link rel="stylesheet" href="../static/css/mypage.css">
     <script src="../static/js/mypage.js"></script>
 
@@ -14,24 +15,38 @@
 
 <body>
 
-    <!-- The text field -->
-    <ul id="saveList">
-        <li>
-            <p id="SavedName">맛없는 감자</p>
-            <button class="copySave">복사</button>
-            <button class="deletSave">삭제</button>
-        </li>
-        <li>
-            <p id="SavedName">밋밋한 상어</p>
-            <button class="copySave">복사</button>
-            <button class="deletSave">삭제</button>
-        </li>
-        <li>
-            <p id="SavedName">새파란 토마토</p>
-            <button class="copySave">복사</button>
-            <button class="deletSave">삭제</button>
-        </li>
+    <a href="/ChooseMyname" id="GoToChoose">내 이름을 정해줘</a>
 
-    </ul>
+    <section class="MyPageBox">
+
+        <p class="thisPlace">>마이페이지</p>
+
+        <div class="title">
+            <span class="highlignt"></span>
+            <h1>나의 닉네임들</h1>
+            
+        </div>
+
+        <section id="NameList">
+
+            <ul>
+                <li>
+                    <p id="ListSavedName">무시무시한 감자</p>
+                    <div>
+                        <button class="ListCopy">복사</button>
+                        <button class="ListDel">삭제</button>
+                    </div>
+                    <span class="line"></span>
+                </li>
+
+            </ul>
+        </section>
+
+
+    </section>
+
+
+
+
 
 </body>
