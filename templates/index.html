@@ -20,7 +20,6 @@
             function sign_in() {
                 let user_id = $('#user-id').val()
                 let user_pw = $('#user-pw').val()
-
                 if (user_id == "") {
                     // alert("아이디를 입력하세요")
                     $('#signIn #wrong').text('아이디를 입력해줘!')
@@ -53,49 +52,58 @@
                     }
                 })
             }
-            function sign_up() {
-                let user_id = $('#up-user-id').val()
-                let user_pw = $('#up-user-pw').val()
-                let user_pw2 = $('#up-user-pw2').val()
+            $.ajax({
+                type: "POST",
+                url: "/api/sign_in",
+                data: {
+                    id_give: $('#user-id').val(),
+                    pw_give: $('#user-pw').val()
+                },
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        $.cookie('mytoken', response['token']);
+                        $.cookie('id', $('#user-id').val());
+                        window.location.href = '/ChooseMyname'
+                        alert("로그인 성공")
 
-                if (user_id == "") {
-                    // alert("아이디를 입력하세요")
-                    $('.suID #wrong').text('아이디를 입력해줘!')
-                    return false
-                } else if (user_pw == "") {
-                    // alert("비밀번호를 입력하세요")
-                    $('.suPW .wrong').text('비밀번호를 입력해줘!')
-                    $('.suPW .wrong').css('color', '#ff0000')
-                    return false
-                } else if (user_pw != user_pw2) {
-                    // alert("비밀번호를 확인하세요")
-                    $('.suPW2 #wrong').text('비밀번호를 확인해줘!')
-                    return false
-                } else if (user_id) {}
-                $.ajax({
-                    type: "POST",
-                    url: "/api/sign_up",
-                    data: {
-                        id_give: user_id,
-                        pw_give: user_pw,
-                        pw2_give: user_pw2
-                    },
-                    success: function (response) {
-                        alert(response["msg"])
-                        
-                        window.location.href = '/'
+                        if (user_id == "") {
+                            // alert("아이디를 입력하세요")
+                            $('.suID #wrong').text('아이디를 입력해줘!')
+                            return false
+                        } else if (user_pw == "") {
+                            // alert("비밀번호를 입력하세요")
+                            $('.suPW .wrong').text('비밀번호를 입력해줘!')
+                            $('.suPW .wrong').css('color', '#ff0000')
+                            return false
+                        } else if (user_pw != user_pw2) {
+                            // alert("비밀번호를 확인하세요")
+                            $('.suPW2 #wrong').text('비밀번호를 확인해줘!')
+                            return false
+                        } else if (user_id) {}
+                        $.ajax({
+                            type: "POST",
+                            url: "/api/sign_up",
+                            data: {
+                                id_give: user_id,
+                                pw_give: user_pw,
+                                pw2_give: user_pw2
+                            },
+                            success: function (response) {
+                                alert(response["msg"])
+                                window.location.href = '/'
+                            }
+                        })
                     }
+                }
                 })
-            }
         </script>
-
     </head>
     <body>
         <h1 class="animate__animated animate__jackInTheBox">내 이름을 정해줘!</h1>
         <article id="firstpage">
             <div id="box">
                 <section id="signIn">
-                    
+
                     <section>
                         <div>
                             <p id="TestId">ID</p>
@@ -157,7 +165,5 @@
             </div>
         </article>
 
-
-        
     </body>
 </html>

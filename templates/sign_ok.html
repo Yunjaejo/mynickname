@@ -13,6 +13,8 @@
         window.location.href='/sign_in'
       }
 
+      $('.test').load('/index.html h1');
+
     </script>
 </head>
 <body>
@@ -20,5 +22,6 @@
 <h2>10초 후 로그인이 만료됩니다. 계속 새로고침 해보세요.</h2>
 내 아이디 : {{userid}}<br>
 <button onclick="byebye()">강제로 로그아웃하기</button>
+<p class="test"></p>
 </body>
 </html>

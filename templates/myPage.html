@@ -18,6 +18,36 @@
 
         <script>
 
+            function nick_listing() {
+            // 주문목록 보기 API 연결
+            $.ajax({
+                type: "GET",
+                url: "/order",
+                data: {},
+                success: function (response) {
+                    let orders = response['orders']
+                    for (let i = 0; i < orders.length; i++) {
+                        let name = orders[i]['name']
+                        let count = orders[i]['count']
+                        let address = orders[i]['address']
+                        let phone = orders[i]['phone']
+
+                        let temp_html = `<li>
+                            <p id="ListSavedName">{}</p>
+                            <div>
+                                <button class="ListCopy">복사</button>
+                                <button class="ListDel">삭제</button>
+                            </div>
+                            <span class="line"></span>
+                        </li>`
+
+                        $('#orders-box').append(temp_html)
+                    }
+
+                }
+            })
+        }
+
             $.ajax({type: "GET", url: "", data: {}, success: function (response) {}})
 
             $('.ListDel').click(function () {
@@ -30,6 +60,7 @@
     </head>
 
     <body>
+
         <article>
             <a href="/ChooseMyname" id="GoToChoose">내 이름을 정해줘</a>
 
