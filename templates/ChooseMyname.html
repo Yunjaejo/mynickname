@@ -88,6 +88,11 @@
                                     if (adj_len1 + noun_len1 <= word_counting) {                       
                                         console.log(adj_len1, noun_len1, adj_len1 + noun_len1)
                                         console.log(wish_adj, noun_words[ran_noun_num])
+                                        let ResultName = wish_adj+' ' +noun_words[ran_noun_num];
+                                
+                                $('.NameResult').text(ResultName);
+                                $('#GetPage').css('display','none');
+                                $('#ResultPage').css('display','flex');
                                     }
 
                                 } else {
@@ -102,6 +107,11 @@
                                         console.log(adj_len2, fruits_len2, adj_len2 + fruits_len2)
                                         console.log(wish_adj, fruits_words[ran_fruits_num])
                                         console.log(ran_fruits_num, adj_len2, fruits_len2, fruits_words[ran_fruits_num])
+                                        let ResultName = wish_adj+' ' +fruits_words[ran_fruits_num];
+                                
+                                $('.NameResult').text(ResultName);
+                                $('#GetPage').css('display','none');
+                                $('#ResultPage').css('display','flex');
                                     }
                                 } else {
                                     alert('형용사를 입력해줘!')
@@ -118,6 +128,11 @@
                                         console.log(adj_len3, animal_len3, adj_len3 + animal_len3)
                                         console.log(wish_adj, animal_words[ran_animal_num])
                                         console.log(ran_animal_num, adj_len3, animal_len3, animal_words[ran_animal_num])
+                                        let ResultName = wish_adj+' ' +animal_words[ran_fruits_num];
+                                
+                                $('.NameResult').text(ResultName);
+                                $('#GetPage').css('display','none');
+                                $('#ResultPage').css('display','flex');
                                     }
                                 } else {
                                     alert('형용사를 입력해줘!')
@@ -131,6 +146,11 @@
                                         console.log(adj_len4, ani_fru_len4, adj_len4 + ani_fru_len4)
                                         console.log(wish_adj, animal_fruits_words[ran_ani_fru_num])
                                         console.log(ran_ani_fru_num, adj_len4, ani_fru_len4, animal_fruits_words[ran_ani_fru_num])
+                                        let ResultName = wish_adj+' ' +noun_words[ran_noun_num];
+                                
+                                $('.NameResult').text(ResultName);
+                                $('#GetPage').css('display','none');
+                                $('#ResultPage').css('display','flex');
                                     }
                                 } else {
                                     alert('형용사를 입력해줘!')
@@ -149,7 +169,11 @@
                         if (adj_len5 + noun_len5 <= word_counting) {                                     
                             console.log(adj_len5, noun_len5, adj_len5 + noun_len5)
                             console.log(adj_words[ran_adj_num], wish_noun);
-                            
+                            let ResultName = adj_words[ran_adj_num]+' ' +wish_noun;
+                                
+                                $('.NameResult').text(ResultName);
+                                $('#GetPage').css('display','none');
+                                $('#ResultPage').css('display','flex');
                         }
                         } else {
                             alert('명사를 입력해줘!')
@@ -162,7 +186,11 @@
                         if (adj_len6 + noun_len6 <= word_counting) {                                      
                             console.log(adj_len6, noun_len6, adj_len6 + noun_len6)
                             console.log(adj_words[ran_adj_num], noun_words[ran_noun_num]);
-                            
+                            let ResultName = adj_words[ran_adj_num] +' ' + noun_words[ran_noun_num];
+                            console.log(adj_words[ran_adj_num], noun_words[ran_noun_num]);
+                            $('.NameResult').text(ResultName);
+                            $('#GetPage').css('display','none');
+                            $('#ResultPage').css('display','flex');
                         }
                         $('.saveAlert').text($('.NameResult').text());
                         
