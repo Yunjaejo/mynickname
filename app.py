@@ -28,12 +28,13 @@ def sign_up():
 @app.route('/') # 로그인 완료 / 토큰 확인
 def sign_ok():
     token_receive = request.cookies.get('mytoken')
+    request.args.get(token_receive)
     try:
         return render_template('index.html', token_receive=request.cookies.get('mytoken'))
     except jwt.ExpiredSignatureError:
-        return redirect(url_for("/", msg="로그인 시간이 만료되었습니다."))
+        return redirect(url_for(sign_ok, msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("/", msg="로그인 정보가 존재하지 않습니다."))
+        return redirect(url_for(sign_ok, msg="로그인 정보가 존재하지 않습니다."))
 
 @app.route('/ChooseMyname')
 def get_name():
@@ -96,6 +97,7 @@ def api_sign_in():
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
         return jsonify({'result': 'success', 'token': token, 'data': user_info['id']}) # 토큰 부여
+
         return render_template('ChooseMyname.html', token)
     else:
         return jsonify({'result': 'fail', 'msg': '아이디나 패스워드를 확인하세요'}) # 유저정보없으면 토큰X

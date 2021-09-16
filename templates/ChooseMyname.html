@@ -16,6 +16,7 @@
 
 </head>
 <script>
+
     $(document).ready(function() {
 
         $("input[id=ex_input]").keyup(function (event) {
@@ -114,7 +115,7 @@
 </script>
 <body>
     {% if not token %}
-
+    <p>redirect('/')</p>
     {% endif %}
 
     <header>
