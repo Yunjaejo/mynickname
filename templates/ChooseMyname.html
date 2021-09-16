@@ -305,11 +305,14 @@
 <script>
             function save_nick() {
         let nick = $('.NameResult').text()
+        let cookieId = $.cookie('id');
 
         $.ajax({
             type: "POST",
             url: "/save_mynick",
-            data: {nick_give:nick},
+            data: {
+                cookieId_give:cookieId,
+                nick_give:nick},
             success: function (response) {
                 // alert(response["msg"]);
                 // window.location.reload()
