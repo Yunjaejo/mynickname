@@ -103,13 +103,22 @@ def api_valid():
 def save_nick():
     nick_receive = request.form['nick_give']
     cookieId_receive = request.form['cookieId_give']
-    doc = {
-        'cookieId': cookieId_receive,
-        'nick': nick_receive
-    }
-    db.mynick.insert_one(doc)
 
-    return jsonify({'msg': '저장 완료!'})
+    id_list = list(db.mynick.find({'cookieId': cookieId_receive}, {'_id': False}))
+
+    id_count = len(id_list)
+
+    print(id_count)
+
+    if id_count < 8:
+        doc = {
+            'cookieId': cookieId_receive,
+            'nick': nick_receive
+        }
+        db.mynick.insert_one(doc)
+    else:
+        delete_nick = id_list[0]
+        db.mynick.delete_one(delete_nick)
 
 # 마이페이지에 닉네임 보여주기
 @app.route('/order', methods=['GET'])
