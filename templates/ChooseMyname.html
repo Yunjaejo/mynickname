@@ -29,6 +29,7 @@
         });
     })
 
+
     function get_mynick() {
         $.ajax({
                 type: "GET",
@@ -202,11 +203,12 @@
         )
     }
 
+
+
+
 </script>
 <body>
-    {% if not token %}
 
-    {% endif %}
 
     <header>
         <a href="/myPage">마이페이지</a>
@@ -289,7 +291,7 @@
 
                     <div>
                     <ul>
-                        <li class="off saveToMyPage"> <span>></span> 응, 저장할래! </li>
+                        <li class="off saveToMyPage" onclick="save_nick()"> <span>></span> 응, 저장할래! </li>
                         <li class="off Clip"> <span>></span> 응, 바로 복사할래! </li>
                         <li class="off Reset"> <span>></span> 아니, 처음부터 다시할래! </li>
                         <li class="off Retry" onclick="get_mynick ()"> <span>></span> 아니, 같은 설정으로 다시 정해줘! </li>
@@ -300,6 +302,22 @@
         </article>
     </article>
 <p id="TempName"></p>
+<script>
+            function save_nick() {
+        let nick = $('.NameResult').text()
+
+        $.ajax({
+            type: "POST",
+            url: "/save_mynick",
+            data: {nick_give:nick},
+            success: function (response) {
+                // alert(response["msg"]);
+                // window.location.reload()
+            }
+
+        })
+    }
+</script>
 </body>
 
 </html>

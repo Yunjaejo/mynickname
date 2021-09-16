@@ -120,6 +120,21 @@ def api_valid():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 없습니다.'})
 
+# 닉네임 db에 저장
+@app.route('/save_mynick', methods=['POST', 'GET'])
+def save_nick():
+    nick_receive = request.form['nick_give']
+
+    doc = {'nick': nick_receive}
+    db.mynick.insert_one(doc)
+
+    return jsonify({'msg': '저장 완료!'})
+
+# 마이페이지에 닉네임 보여주기
+@app.route('/order', methods=['GET'])
+def view_nick():
+    nick = list(db.mynick.find({},{'_id':False}))
+    return jsonify({'nick':nick})
 
 
 if __name__ == '__main__':
