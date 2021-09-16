@@ -124,8 +124,11 @@ def api_valid():
 @app.route('/save_mynick', methods=['POST', 'GET'])
 def save_nick():
     nick_receive = request.form['nick_give']
-
-    doc = {'nick': nick_receive}
+    cookieId_receive = request.form['cookieId_give']
+    doc = {
+        'cookieId': cookieId_receive,
+        'nick': nick_receive
+    }
     db.mynick.insert_one(doc)
 
     return jsonify({'msg': '저장 완료!'})
