@@ -119,6 +119,11 @@ def save_nick():
     else:
         delete_nick = id_list[0]
         db.mynick.delete_one(delete_nick)
+        doc = {
+            'cookieId': cookieId_receive,
+            'nick': nick_receive
+        }
+        db.mynick.insert_one(doc)
 
 # 마이페이지에 닉네임 보여주기
 @app.route('/order', methods=['GET'])
