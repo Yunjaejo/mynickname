@@ -21,6 +21,24 @@ body {margin: 0;}
 font-family: 'Sunflower',sans-serif;
 }
 
+/*animation*/
+@keyframes buttonAni {
+  0%{transform: scale(1);}
+  50%{transform: scale(.9);}
+  100%{transform: scale(1);}
+}
+.buttonGradientAni {
+  animation: buttonAni 3s ease infinite;
+} 
+
+@keyframes ShowResult {
+  0%{transform: scale(0);}
+  100%{transform: scale(1);}
+}
+.ShowAni {
+  animation: ShowResult 2s ease;
+}
+
 /*Text Input*/
 
 .textInput{
@@ -32,10 +50,12 @@ input[type="text"], input[type="password"]{
     height: auto;
     line-height: normal;
     padding: 10px 20px 10px;
-  box-sizing: border-box;
-  box-shadow: inset -3px 3px 4px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-    outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */ -webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */ -moz-appearance: none; appearance: none;
+    box-sizing: border-box;
+    box-shadow: inset -3px 3px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */ 
+    -webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */ 
+    -moz-appearance: none; appearance: none;
   }
 
 .textClear{
@@ -88,19 +108,4 @@ input[type="text"], input[type="password"]{
 
 
 
-@keyframes buttonAni {
-  0%{transform: scale(1);}
-  50%{transform: scale(.9);}
-  100%{transform: scale(1);}
-}
-.buttonGradientAni {
-  animation: buttonAni 3s ease infinite;
-} 
 
-@keyframes ShowResult {
-  0%{transform: scale(0);}
-  100%{transform: scale(1);}
-}
-.ShowAni {
-  animation: ShowResult 2s ease;
-}

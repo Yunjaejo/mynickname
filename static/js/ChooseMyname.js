@@ -83,7 +83,6 @@ $(document).ready(function () {
             $(this).removeClass('off');
             $(this).addClass('on');
         }
-
     });
 
 

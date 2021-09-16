@@ -15,7 +15,7 @@ SECRET_KEY = 'TEAM19'
 # html 연결하기
 @app.route('/')
 def home():
-    return render_template('index.html') # 메인 페이지(로그인)
+    return render_template('Login.html') # 메인 페이지(로그인)
 
 @app.route('/show_myname')
 def sign_up():
@@ -30,7 +30,7 @@ def sign_ok():
     token_receive = request.cookies.get('mytoken')
     request.args.get(token_receive)
     try:
-        return render_template('index.html', token_receive=request.cookies.get('mytoken'))
+        return render_template('Login.html', token_receive=request.cookies.get('mytoken'))
     except jwt.ExpiredSignatureError:
         return redirect(url_for(sign_ok, msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:

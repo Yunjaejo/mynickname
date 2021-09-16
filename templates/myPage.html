@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
     <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>내 이름을 정해줘! | 마이페이지</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossorigin="crossorigin">
-        <link
-            href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-            rel="stylesheet">
-        <meta charset="utf-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
         <link rel="stylesheet" href="../static/css/common.css">
         <link rel="stylesheet" href="../static/css/mypage.css">
         <script src="../static/js/mypage.js"></script>
@@ -19,20 +15,20 @@
         <script>
 
             function nick_listing() {
-            // 주문목록 보기 API 연결
-            $.ajax({
-                type: "GET",
-                url: "/order",
-                data: {},
-                success: function (response) {
-                    let orders = response['orders']
-                    for (let i = 0; i < orders.length; i++) {
-                        let name = orders[i]['name']
-                        let count = orders[i]['count']
-                        let address = orders[i]['address']
-                        let phone = orders[i]['phone']
+                // 주문목록 보기 API 연결
+                $.ajax({
+                    type: "GET",
+                    url: "/order",
+                    data: {},
+                    success: function (response) {
+                        let orders = response['orders']
+                        for (let i = 0; i < orders.length; i++) {
+                            let name = orders[i]['name']
+                            let count = orders[i]['count']
+                            let address = orders[i]['address']
+                            let phone = orders[i]['phone']
 
-                        let temp_html = `<li>
+                            let temp_html = `<li>
                             <p id="ListSavedName">{}</p>
                             <div>
                                 <button class="ListCopy">복사</button>
@@ -41,20 +37,19 @@
                             <span class="line"></span>
                         </li>`
 
-                        $('#orders-box').append(temp_html)
+                            $('#orders-box').append(temp_html)
+                        }
                     }
-
-                }
-            })
-        }
+                })
+            }
 
             $.ajax({type: "GET", url: "", data: {}, success: function (response) {}})
 
             $('.ListDel').click(function () {
-
                 $.ajax({type: "POST", url: "", data: {}, success: function (response) {}})
                 location.reload();
             });
+
         </script>
 
     </head>
