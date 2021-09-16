@@ -16,7 +16,7 @@
 
 </head>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         $("input[id=ex_input]").keyup(function (event) {
 
@@ -29,87 +29,150 @@
         });
     })
 
-    function get_mynick () {
-            $.ajax({
-                    type: "GET",
-                    url: "/get_mynick",
-                    data: {},
-                    success: function (response) {
-                        let noun_words = new Array();
-                        let adj_words = new Array();
-                        let animal_words = new Array();
-                        let fruits_words = new Array();
+    function get_mynick() {
+        $.ajax({
+                type: "GET",
+                url: "/get_mynick",
+                data: {},
+                success: function (response) {
+                    let noun_words = new Array();               
+                    let adj_words = new Array();                
+                    let animal_words = new Array();           
+                    let fruits_words = new Array();            
+                    let animal_fruits_words = new Array();      
 
-                        let a = 0
-                        let b = 0
-                        let c = 0
-                        let d = 0
-
-
-                        let nickname = response['all_nickname']
+                    let adj_count = 0                      
+                    let noun_count = 0                       
+                    let animal_count = 0                      
+                    let fruits_count = 0                       
 
 
-                        for (let i = 0; i < nickname.length; i++) {
+                    let nickname = response['all_nickname']
 
-                            let words_a = nickname[i]['word']
-                            let type = nickname[i]['class']
 
-                            if (type == 'adj') {
-                                a += 1
-                                adj_words[a]=words_a;
-                            } else if(type == 'noun') {
-                                b += 1
-                                noun_words[b]=words_a; 
-                            } else if(type == 'animal') {
-                                c += 1
-                                animal_words[c]=words_a;
-                            } else {
-                                d += 1
-                                fruits_words[d]=words_a;
-                            }
-                        }
-                        
-                        
+                    for (let i = 0; i < nickname.length; i++) {
 
-                        let target = $('.wordOption .on').text();
-                        if (target == '형용사') {
-                            let wish_adj = $('#ex_input').val()
-                            if (wish_adj != '') {
-                                let ran_noun_num = Math.floor(Math.random() * 25416 + 1);
-                                let ResultName = wish_adj+' ' + noun_words[ran_noun_num];
-                                console.log(wish_adj, noun_words[ran_noun_num]);
-                                $('.NameResult').text(ResultName);
-                                $('#GetPage').css('display','none');
-                                $('#ResultPage').css('display','flex');
-                            } else {
-                                alert('형용사를 입력해줘!')
-                            }
-                        } else if(target == '명사') {
-                            let wish_noun = $('#ex_input').val()
-                            if (wish_noun != '') {
-                                let ran_adj_num = Math.floor(Math.random() * 181 + 1);
-                                let ResultName = adj_words[ran_adj_num]+' ' + wish_noun;
-                                console.log(adj_words[ran_adj_num], wish_noun);
-                                $('.NameResult').text(ResultName);
-                                $('#GetPage').css('display','none');
-                                $('#ResultPage').css('display','flex');
-                            } else {
-                                alert('명사를 입력해줘!')
-                            }
+                        let words = nickname[i]['word']
+                        let type = nickname[i]['class']
+
+                        if (type == 'adj') {                                                        
+                            adj_count += 1
+                            adj_words[adj_count] = words;
+                        } else if (type == 'noun') {                                                
+                            noun_count += 1
+                            noun_words[noun_count] = words;
+                        } else if (type == 'animal') {
+                            animal_count += 1
+                            animal_words[animal_count] = words;                                     
+                            animal_fruits_words[animal_count] = words;                              
                         } else {
-                            let ran_adj_num = Math.floor(Math.random() * 181+1);
-                            let ran_noun_num = Math.floor(Math.random() * 25416+1);
-                            let ResultName = adj_words[ran_adj_num] +' ' + noun_words[ran_noun_num];
+                            fruits_count += 1
+                            fruits_words[fruits_count] = words;                                     
+                            animal_fruits_words[fruits_count + animal_count] = words;               
+                        }
+                    }
+
+                    let target = $('.on').html()
+                    let word_counting = $('.count').val()
+                    let animal_check = $('.animal input').hasClass('on')
+                    let fruits_check = $('.fruits input').hasClass('on')
+
+                    if (target == '형용사') {                                                          
+                        let wish_adj = $('#ex_input').val()                                            
+                        if (animal_check != true) {
+                            if (fruits_check != true) {
+                                if (wish_adj != '') {                                                  
+                                    let ran_noun_num = Math.floor(Math.random() * 25416 + 1);          
+                                    let adj_len1 = wish_adj.length                                     
+                                    let noun_len1 = noun_words[ran_noun_num].length                    
+                                    if (adj_len1 + noun_len1 <= word_counting) {                       
+                                        console.log(adj_len1, noun_len1, adj_len1 + noun_len1)
+                                        console.log(wish_adj, noun_words[ran_noun_num])
+                                    }
+
+                                } else {
+                                    alert('형용사를 입력해줘!')
+                                }
+                            } else {
+                                if (wish_adj != '') {                                                  
+                                    let ran_fruits_num = Math.floor(Math.random() * 51 + 1);           
+                                    let adj_len2 = wish_adj.length                                     
+                                    let fruits_len2 = fruits_words[ran_fruits_num].length              
+                                    if (adj_len2 + fruits_len2 <= word_counting) {                     
+                                        console.log(adj_len2, fruits_len2, adj_len2 + fruits_len2)
+                                        console.log(wish_adj, fruits_words[ran_fruits_num])
+                                        console.log(ran_fruits_num, adj_len2, fruits_len2, fruits_words[ran_fruits_num])
+                                    }
+                                } else {
+                                    alert('형용사를 입력해줘!')
+                                }
+                            }
+                            
+                        } else {
+                            if (fruits_check != true) {
+                                if (wish_adj != '') {                                                   
+                                    let ran_animal_num = Math.floor(Math.random() * 141 + 1);           
+                                    let adj_len3 = wish_adj.length                                      
+                                    let animal_len3 = animal_words[ran_animal_num].length               
+                                    if (adj_len3 + animal_len3 <= word_counting) {                      
+                                        console.log(adj_len3, animal_len3, adj_len3 + animal_len3)
+                                        console.log(wish_adj, animal_words[ran_animal_num])
+                                        console.log(ran_animal_num, adj_len3, animal_len3, animal_words[ran_animal_num])
+                                    }
+                                } else {
+                                    alert('형용사를 입력해줘!')
+                                }
+                            } else {
+                                if (wish_adj != '') {                                                   
+                                    let ran_ani_fru_num = Math.floor(Math.random() * 192 + 1);          
+                                    let adj_len4 = wish_adj.length                                     
+                                    let ani_fru_len4 = animal_fruits_words[ran_ani_fru_num].length      
+                                    if (adj_len4 + ani_fru_len4 <= word_counting) {                     
+                                        console.log(adj_len4, ani_fru_len4, adj_len4 + ani_fru_len4)
+                                        console.log(wish_adj, animal_fruits_words[ran_ani_fru_num])
+                                        console.log(ran_ani_fru_num, adj_len4, ani_fru_len4, animal_fruits_words[ran_ani_fru_num])
+                                    }
+                                } else {
+                                    alert('형용사를 입력해줘!')
+                                }
+                            }
+
+
+                        }
+
+                    } else if (target == '명사') {                                                        
+                        let wish_noun = $('#ex_input').val()                                             
+                        if (wish_noun != '') {                                                           
+                        let ran_adj_num = Math.floor(Math.random() * 181 + 1);                           
+                        let adj_len5 = adj_words[ran_adj_num].length                                     
+                        let noun_len5 = wish_noun.length                                                 
+                        if (adj_len5 + noun_len5 <= word_counting) {                                     
+                            console.log(adj_len5, noun_len5, adj_len5 + noun_len5)
+                            console.log(adj_words[ran_adj_num], wish_noun);
+                            
+                        }
+                        } else {
+                            alert('명사를 입력해줘!')
+                        }
+                    } else {                                                                              
+                        let ran_adj_num = Math.floor(Math.random() * 181 + 1);                            
+                        let ran_noun_num = Math.floor(Math.random() * 25416 + 1);                         
+                        let adj_len6 = adj_words[ran_adj_num].length                                      
+                        let noun_len6 = noun_words[ran_noun_num].length                                   
+                        if (adj_len6 + noun_len6 <= word_counting) {                                      
+                            console.log(adj_len6, noun_len6, adj_len6 + noun_len6)
                             console.log(adj_words[ran_adj_num], noun_words[ran_noun_num]);
-                            $('.NameResult').text(ResultName);
-                            $('#GetPage').css('display','none');
-                            $('#ResultPage').css('display','flex');
+                            
                         }
                         $('.saveAlert').text($('.NameResult').text());
- 
+                        
                     }
-            });
-        }
+                }
+
+
+            }
+        )
+    }
 
 </script>
 <body>
@@ -147,9 +210,9 @@
                 <p>최대글자수</p>
                 <section>
                     <form oninput="count.value = parseInt(RangeInput.value)">
-                        <input type="range" min="3" max="12" step="" value="5" name="RangeInput">
+                        <input type="range" min="3" max="13" step="" value="9" name="RangeInput">
                         <div>
-                            <output name='count' for="RangeInput" class="count">5</output>
+                            <output name='count' for="RangeInput" class="count">9</output>
                             <p>자</p>
                         </div>
                     </form>
@@ -159,7 +222,7 @@
                 <p>명사종류</p>
                 <section>
                     <div>
-                        <label class="furuit checks">
+                        <label class="fruits checks">
                             <p>과일</p>
                             <input type="checkbox">
                             <span class="checkmark"></span>
@@ -187,15 +250,15 @@
             </div>
             </div>
     </section>
-    
+
         <article>
-            <section id="ResultContent"> 
+            <section id="ResultContent">
                 <p class="NameResult">무시무시한 감자</p>
                 <img src="../static/img/CHAR.svg" alt="character image">
-    
+
                 <div class="textBox">
                     <p>이 이름이 마음에 드니?</p>
-                    
+
                     <div>
                     <ul>
                         <li class="off saveToMyPage"> <span>></span> 응, 저장할래! </li>
@@ -206,11 +269,9 @@
                 </div>
                 </div>
             </section>
-        </article>       
+        </article>
     </article>
 <p id="TempName"></p>
 </body>
 
 </html>
-
-

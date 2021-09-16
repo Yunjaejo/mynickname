@@ -8,7 +8,7 @@ $(document).ready(function(){
         if($(this).hasClass('off')){
             $(this).removeClass('off').addClass('on');
             $(this).siblings('p').addClass('off').removeClass('on');
-            
+
         }
         let word = $(this).text();
         if(word == '완전랜덤'){
@@ -51,9 +51,13 @@ $(document).ready(function(){
 
         if($(this).hasClass('on')){
             $(this).removeClass('on');
+            $(this).addClass('off');
         }else{
+            $(this).removeClass('off');
             $(this).addClass('on');
         }
+
+
 
     });
 
@@ -67,7 +71,7 @@ let resultName = $('.NameResult').text();
 
 //저장하기
 $('.saveToMyPage').click(function(){
-    
+
     $('#saveName').css('display','flex');
 });
 
@@ -78,11 +82,11 @@ $('#box .close').click(function(){
 });
 
 
-//복사 
+//복사
 $('.Clip').click(function(){
     //클릭한 버튼의 형제 위치에 있는 p태그 안의 텍스트를 가져옵니다.
     var copyText = $('.NameResult').text();
-    
+
     if(!navigator.clipboard){
         fallbackCopyTextToClipboard(copyText);
         return
@@ -101,6 +105,6 @@ $('.Clip').click(function(){
 
 $('.Reset').click(function(){location.reload();});
 
-    
+
 
 });
