@@ -19,7 +19,7 @@ def home():
 
 @app.route('/show_myname')
 def sign_up():
-    return render_template('show_myname.html') # 회원가입 페이지
+    return render_template('ChooseMyname.html') # 회원가입 페이지
 #
 # @app.route('/sign_in')
 # def sign_in():
@@ -35,17 +35,17 @@ def sign_ok():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("/", msg="로그인 정보가 존재하지 않습니다."))
 
-@app.route('/get_name')
+@app.route('/ChooseMyname')
 def get_name():
-    return render_template('get_name.html') # 닉네임 생성 페이지
+    return render_template('ChooseMyname.html') # 닉네임 생성 페이지
 
 @app.route('/post_myname')
 def post_myname():
     return render_template('post_myname.html') # 닉네임 즐겨찾기 추가하기
 
-@app.route('/get_myname')
+@app.route('/ChooseMyname')
 def get_myname():
-    return render_template('get_myname.html') # 마이 페이지
+    return render_template('myPage.html') # 마이 페이지
 
 @app.route('/delete_myname')
 def delete_myname():
@@ -96,7 +96,7 @@ def api_sign_in():
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
         return jsonify({'result': 'success', 'token': token, 'data': user_info['id']}) # 토큰 부여
-        return render_template('get_name.html', token)
+        return render_template('ChooseMyname.html', token)
     else:
         return jsonify({'result': 'fail', 'msg': '아이디나 패스워드를 확인하세요'}) # 유저정보없으면 토큰X
 

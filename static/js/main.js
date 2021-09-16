@@ -18,7 +18,6 @@ $(document).ready(function(){
         }else{
             let labelText = `${word}를 원해!`;
             $("label[for='ex_input']").text(labelText);
-            $('#ex_input').removeaAttr('readonly');
             $('#ex_input').attr('readonly',false);
         }
     });
@@ -58,6 +57,49 @@ $(document).ready(function(){
 
     });
 
+
+
+
+//Result Page
+
+$('#saveName').hide();
+let resultName = $('.NameResult').text();
+
+//저장하기
+$('.saveToMyPage').click(function(){
+    $('.saveAlert').text(resultName);
+    $('#saveName').css('display','flex');
+});
+
+//저장 알림창 닫기
+$('#box .close').click(function(){
+    $('#saveName').hide();
+    location.reload();
+});
+
+
+//복사 
+$('.Clip').click(function(){
+    //클릭한 버튼의 형제 위치에 있는 p태그 안의 텍스트를 가져옵니다.
+    var copyText = $('.NameResult').text();
+    
+    if(!navigator.clipboard){
+        fallbackCopyTextToClipboard(copyText);
+        return
+    }
+    navigator.clipboard.writeText(copyText).then(
+        function(){
+            alert('복사완료! 이제 닉네임을 붙여넣어봐!');
+            console.log("success");
+        },
+        function(err){
+            //복사 실패시
+            console.error("fail",err);
+        }
+    );
+});
+
+$('.Reset').click(function(){location.reload();});
 
     
 
