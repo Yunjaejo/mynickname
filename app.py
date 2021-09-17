@@ -10,8 +10,8 @@ app = Flask(__name__)
 SECRET_KEY = 'TEAM19'
 
 client = MongoClient('localhost', 27017)
-# db = client.hh99_nickname # db연결
-db = client.nickname
+db = client.hh99_nickname # db연결
+# db = client.nickname
 
 
 
@@ -91,7 +91,7 @@ def save_nick():
     nick_receive = request.form['nick_give']
     cookieId_receive = request.form['cookieId_give']
 
-    id_list = list(db.usersdb.find({'cookieId': cookieId_receive}, {'_id': False}))
+    id_list = list(db.mynick.find({'cookieId': cookieId_receive}, {'_id': False}))
 
     id_count = len(id_list)
 
@@ -106,7 +106,7 @@ def save_nick():
         db.mynick.insert_one(doc)
     else:
         delete_nick = id_list[0]
-        db.usersdb.delete_one(delete_nick)
+        db.mynick.delete_one(delete_nick)
         doc = {
             'cookieId': cookieId_receive,
             'nick': nick_receive
