@@ -4,9 +4,9 @@ from bs4 import BeautifulSoup
 from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
-db = client.hh99_nickname # db연결
+# db = client.hh99_nickname # db연결
 
-# db = client.nickname
+db = client.nickname
 
 
 # import sys
