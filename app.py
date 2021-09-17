@@ -110,6 +110,7 @@ def save_nick():
 
     print(id_count)
 
+
     if id_count < 8:
         doc = {
             'cookieId': cookieId_receive,
@@ -126,10 +127,14 @@ def save_nick():
         db.mynick.insert_one(doc)
 
 # 마이페이지에 닉네임 보여주기
-@app.route('/order', methods=['GET'])
+@app.route('/view_mynick', methods=['GET'])
 def view_nick():
-    nick = list(db.mynick.find({},{'_id':False}))
-    return jsonify({'nick':nick})
+
+    mynicks = list(db.mynick.find({'cookieId': request.cookies.get('id')}, {'_id': False}))
+
+    return jsonify({'mynicks': mynicks})
+
+
 
 
 if __name__ == '__main__':
