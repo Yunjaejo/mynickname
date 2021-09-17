@@ -1,12 +1,16 @@
 @charset "utf-8";
 
 #GoToChoose {
-    font-size: 3rem;
+    height: 3rem;
     width: 62%;
     min-width: 480px;
     margin: 0 auto;
     padding-top: 40px;
     display: block;
+    text-align: left;
+}
+#GoToChoose a{
+    font-size: 3rem;
 }
 
 
@@ -95,23 +99,17 @@ article{
     
 }
 
-.ListCopy,
-.ListDel {
+.ListCopy{
     width: 60px;
     height: 40px;
     font-size: 2rem;
     line-height: 40px;
     border-radius: 5px;
     margin-bottom: 15px;
+    background: #3864FF;
     /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
 }
-.ListCopy {
-    background: #3864FF;
-    margin-right: 15px;
-}
-.ListDel {
-    background: #a0a0a0;
-}
+
 #NameList .line {
     position: absolute;
     width: 100%;

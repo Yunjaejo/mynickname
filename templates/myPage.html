@@ -5,12 +5,13 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:image" src="../img/ogIMG.png">
         <title>내 이름을 정해줘! | 마이페이지</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
         <link rel="stylesheet" href="../static/css/common.css">
         <link rel="stylesheet" href="../static/css/mypage.css">
-        <script src="../static/js/mypage.js"></script>
+        
 
         <script>
 
@@ -51,27 +52,27 @@
 
                 })
             }
+            view_nick();
+            let copyText = $('.ListCopy').siblings('p').text();
+        console.log('copyText');
+            
 
-            $(document).ready(function () {
-                view_nick();
-            });
 
+            // $.ajax({type: "GET", url: "", data: {}, success: function (response) {}})
 
-            $.ajax({type: "GET", url: "", data: {}, success: function (response) {}})
-
-            $('.ListDel').click(function () {
-                $.ajax({type: "POST", url: "", data: {}, success: function (response) {}})
-                location.reload();
-            });
+            // $('.ListDel').click(function () {
+            //     $.ajax({type: "POST", url: "", data: {}, success: function (response) {}})
+            //     location.reload();
+            // });
 
         </script>
-
+    <!-- <script src="../static/js/mypage.js"></script> -->
     </head>
 
     <body>
 
         <article>
-            <a href="/" id="GoToChoose">내 이름을 정해줘</a>
+            <div id="GoToChoose"><a href="/" >내 이름을 정해줘</a></div>
 
             <section class="MyPageBox">
 
@@ -86,70 +87,6 @@
                 <section id="NameList">
 
                     <ul id="nicksList">
-<!--                        <li>-->
-<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
-<!--                            <div>-->
-<!--                                <button class="ListCopy">복사</button>-->
-<!--                                <button class="ListDel">삭제</button>-->
-<!--                            </div>-->
-<!--                            <span class="line"></span>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
-<!--                            <div>-->
-<!--                                <button class="ListCopy">복사</button>-->
-<!--                                <button class="ListDel">삭제</button>-->
-<!--                            </div>-->
-<!--                            <span class="line"></span>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
-<!--                            <div>-->
-<!--                                <button class="ListCopy">복사</button>-->
-<!--                                <button class="ListDel">삭제</button>-->
-<!--                            </div>-->
-<!--                            <span class="line"></span>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
-<!--                            <div>-->
-<!--                                <button class="ListCopy">복사</button>-->
-<!--                                <button class="ListDel">삭제</button>-->
-<!--                            </div>-->
-<!--                            <span class="line"></span>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
-<!--                            <div>-->
-<!--                                <button class="ListCopy">복사</button>-->
-<!--                                <button class="ListDel">삭제</button>-->
-<!--                            </div>-->
-<!--                            <span class="line"></span>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
-<!--                            <div>-->
-<!--                                <button class="ListCopy">복사</button>-->
-<!--                                <button class="ListDel">삭제</button>-->
-<!--                            </div>-->
-<!--                            <span class="line"></span>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
-<!--                            <div>-->
-<!--                                <button class="ListCopy">복사</button>-->
-<!--                                <button class="ListDel">삭제</button>-->
-<!--                            </div>-->
-<!--                            <span class="line"></span>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
-<!--                            <div>-->
-<!--                                <button class="ListCopy">복사</button>-->
-<!--                                <button class="ListDel">삭제</button>-->
-<!--                            </div>-->
-<!--                            <span class="line"></span>-->
-<!--                        </li>-->
 
                     </ul>
                 </section>
