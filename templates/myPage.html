@@ -21,22 +21,36 @@
                     url: "/view_mynick",
                     data: {},
                     success: function (response) {
-                        let allnick = response['mynicks']
-                        for (let i = 0; i < 8; i++) {
-                            let mynicks = allnick[i]['nick'];
-                            console.log(mynicks);
-                            let temp_html = `<li>
-                                                <p id="ListSavedName">${mynicks}</p>
-                                                <button class="ListCopy">복사</button>
+                        let all_nick = response['mynicks']
+                        let db_count = 0
+
+                        console.log(all_nick)
+                        for (let i = 0; i < all_nick.length; i++) {
+                            db_count += 1
+                            if(db_count < 9) {
+
+
+                                let mynick = all_nick[i]['nick']
+
+
+
+                                let temp_html = `<li>
+                                                <p id="ListSavedName">${mynick}</p>
+                                                <div>
+                                                    <button class="ListCopy">복사</button>
+                                                    <button class="ListDel">삭제</button>
+                                                </div>
                                                 <span class="line"></span>
                                             </li>`
-                            $('#nicksList').append(temp_html);
-                        }
 
+                                $('#nicksList').append(temp_html)
+                            }
+                        }
                     }
-                });
-                console.log('뷰닉 잘됨')
-                
+
+
+
+                })
             }
             view_nick();
             let copyText = $('.ListCopy').siblings('p').text();
