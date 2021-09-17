@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
         <script type="text/javascript" src="./jquery.cookie.js"></script>
     <script>
         function is_nickname(asValue) {
-            var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/;
+            var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{4,10}$/;
             return regExp.test(asValue);
         }
 
@@ -26,20 +26,37 @@
             return regExp.test(asValue);
         }
 
+        // {#function id_add(){#}
+        // {#   let id = $.cookie('id');#}
+        // {##}
+        // {#    $.ajax({#}
+        // {#            type: "POST",#}
+        // {#            url: "/sign_up/save",#}
+        // {#            data: {#}
+        // {#                username_give: id.#}
+        // {#            },#}
+        // {#            success: function (response) {#}
+        // {#                alert("회원가입을 축하드립니다!")#}
+        // {#                window.location.replace("/login")#}
+        // {#            }#}
+        // {#       })#}
+        // {#    }#}
+
+
         function check_dup() {
             let username = $("#up-user-id").val()
             console.log(username)
             if (username == "") {
-                $("#help-id").text("아이디를 입력해줘!").removeClass("is-safe").addClass("is-danger")
+                $(".suID .wrong").text("아이디를 입력해줘!").removeClass("is-safe").addClass("is-danger")
                 $("#up-user-id").focus()
                 return;
             }
             if (!is_nickname(username)) {
-                $("#help-id").text("4-10자 길이로 해야해!").removeClass("is-safe").addClass("is-danger")
+                $(".suID .wrong").text("4-10자 길이로 해야해!").removeClass("is-safe").addClass("is-danger")
                 $("#up-user-id").focus()
                 return;
             }
-            $("#help-id").addClass("is-loading")
+            $(".suID .wrong").addClass("is-loading")
             $.ajax({
                 type: "POST",
                 url: "/sign_up/check_dup",
@@ -49,38 +66,35 @@
                 success: function (response) {
 
                     if (response["exists"]) {
-                        $("#help-id").text("사용할 수 없어!").removeClass("is-safe").addClass("is-danger")
+                        $(".suID .wrong").text("사용할 수 없어!").removeClass("is-safe").addClass("is-danger")
                         $("#up-user-id").focus()
                     } else {
-                        $("#help-id").text("사용할 수 있어!").removeClass("is-danger").addClass("is-success")
+                        $(".suID .wrong").text("사용할 수 있어!").removeClass("is-danger").addClass("is-success")
                     }
-                    $("#help-id").removeClass("is-loading")
+                    $(".suID .wrong").removeClass("is-loading")
 
                 }
             });
         }
-
-
         function sign_up() {
             let username = $("#up-user-id").val()
             let password = $("#up-user-pw").val()
             let password2 = $("#up-user-pw2").val()
             console.log(username, password, password2)
-
+            check_dup() ;
            if (username == "") {
                 // alert("아이디를 입력하세요")
-                $('.suID #wrong').text('아이디를 입력해줘!')
+                $('.suID .wrong').text('아이디를 입력해줘!')
                 return false
            }else if (password == "") {
                 // alert("비밀번호를 입력하세요")
                 $('.suPW .wrong').text('비밀번호를 입력해줘!')
-                $('.suPW .wrong').css('color','#ff0000')
                 return false
            }else if (password != password2) {
                 // alert("비밀번호를 확인하세요")
-                $('.suPW2 #wrong').text('비밀번호를 확인해줘!')
+                $('.suPW2 .wrong').text('비밀번호를 확인해줘!')
                 return false
-           }$.ajax({
+           }else if($(".suID .wrong").text() == "사용할 수 있어!"){$.ajax({
                 type: "POST",
                 url: "/sign_up/save",
                 data: {
@@ -91,8 +105,8 @@
                     alert("회원가입을 축하드립니다!")
                     window.location.replace("/login")
                 }
-           });
-
+           });}
+           
         }
 
         function sign_in() {
@@ -100,11 +114,11 @@
             let password = $('#user-pw').val()
             if (username == "") {
                 // alert("아이디를 입력하세요")
-                $('#signIn #wrong').text('아이디를 입력해줘!')
+                $('#signIn .wrong').text('아이디를 입력해줘!')
                 return
             } else if (password == "") {
                 // alert("비밀번호를 입 력하세요")
-                $('#signIn #wrong').text('비밀번호를 입력해줘!')
+                $('#signIn .wrong').text('비밀번호를 입력해줘!')
             }
             $.ajax({
                 type: "POST",
@@ -158,7 +172,7 @@
 
                     <section>
                         <a href="#" id="goToSignUp">회원가입</a>
-                        <span class="fontSunflower" id="wrong"></span>
+                        <span class="fontSunflower wrong" ></span>
                     </section>
 
                     <button id="login" class="" onclick="sign_in()">LOGIN</button>
@@ -166,19 +180,14 @@
 
                 <section id="signUp">
 
-                    <button class="back" ></button>
+                    <button class="back"></button>
 
                     <div class="suID">
                         <p>ID</p>
                         <div class="textInput">
                             <input type="text" id="up-user-id">
                             <button class="textClear"></button>
-                            <div class="control">
-                            <button onclick="check_dup()"> <span style="color: black">중복확인</span></button>
-                            </div>
-                            <p id="help-id" class="help is-hidden"></p>
-                            <p id="help-id-login" class="help is-danger"></p>
-                            <span class="fontSunflower " id="wrong"></span>
+                            <span class="fontSunflower wrong"></span>
                         </div>
                     </div>
 
@@ -196,7 +205,7 @@
                         <div class="textInput">
                             <input type="password" id="up-user-pw2">
                             <button class="textClear"></button>
-                            <span class="fontSunflower " id="wrong"></span>
+                            <span class="fontSunflower wrong"></span>
                         </div>
                     </div>
 

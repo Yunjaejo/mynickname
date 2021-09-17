@@ -101,7 +101,6 @@ $(document).ready(function () {
 
     //저장하기
     $('.saveToMyPage').click(function () {
-
         $('#saveName').css('display', 'flex');
     });
 
@@ -124,12 +123,15 @@ $(document).ready(function () {
             .clipboard
             .writeText(copyText)
             .then(function () {
-                alert('복사완료! 이제 닉네임을 붙여넣어봐!');
+                // $('.ClipAlert').css('display','block');
+                $('.ClipAlert').fadeIn(300).delay(400).fadeOut(400);
                 console.log("success");
             }, function (err) {
                 //복사 실패시
                 console.error("fail", err);
             });
+        
+        
     });
 
     $('.Reset').click(function () {

@@ -75,7 +75,7 @@ h1{
     color: #3864FF;
     display: inline-block;
 }
-#wrong{
+.wrong{
     color:#FF0000;
     font-size: 1rem; 
     height: 1rem;
@@ -105,8 +105,8 @@ h1{
     text-align: right;
 }
 
-#signUp .suPW2{
-    margin-top: -10px;
+#signUp .suPW{
+    margin-top: 10px;
 }
 
 #signUp .close , #signUp .back{

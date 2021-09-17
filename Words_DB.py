@@ -7,7 +7,7 @@ from pymongo import MongoClient
 client = MongoClient('mongodb://test:test@localhost', 27017) # db aws
 db = client.hh99_nickname # db연결
 
-# db = client.nickname
+db = client.nickname
 
 
 # import sys
