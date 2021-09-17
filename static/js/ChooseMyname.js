@@ -45,10 +45,12 @@ $(document).ready(function () {
             let labelText = `완전랜덤으로 내 이름을 정해줘!`;
             $("label[for='ex_input']").text(labelText);
             $('#ex_input').attr('readonly', true);
+            $('.textInput').addClass('NoClick');
         } else {
             let labelText = `${word}를 원해!`;
             $("label[for='ex_input']").text(labelText);
             $('#ex_input').attr('readonly', false);
+            $('.textInput').removeClass('NoClick');
         }
         
         
@@ -128,10 +130,38 @@ $(document).ready(function () {
         
     });
 
+
+
     //복사
+
+
+    function copyToClipboard(textToCopy) {
+        // navigator clipboard api needs a secure context (https)
+        if (navigator.clipboard && window.isSecureContext) {
+            // navigator clipboard api method'
+            return navigator.clipboard.writeText(textToCopy);
+        } else {
+            // text area method
+            let textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            // make the textarea out of viewport
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            return new Promise((res, rej) => {
+                // here the magic happens
+                document.execCommand('copy') ? res() : rej();
+                textArea.remove();
+            });
+        }
+    }
+
     $('.Clip').click(function () {
         //클릭한 버튼의 형제 위치에 있는 p태그 안의 텍스트를 가져옵니다.
-        // var copyText = $('.NameResult').text();
+        var copyText = $('.NameResult').text();
 
         // if (!navigator.clipboard) {
         //     fallbackCopyTextToClipboard(copyText);
@@ -148,14 +178,7 @@ $(document).ready(function () {
         //         //복사 실패시
         //         console.error("fail", err);
         //     });
-        var text = $('.NameResult').text();
-navigator.clipboard.writeText(text).then(function() {
-    $('.ClipAlert').css('display','block');
-                 $('.ClipAlert').fadeIn(300).delay(400).fadeOut(400);
-  console.log('Async: Copying to clipboard was successful!');
-}, function(err) {
-  console.error('Async: Could not copy text: ', err);
-});
+        
         
         
     });

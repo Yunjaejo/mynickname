@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+.NoClick{
+  cursor: copy;
+  pointer-events: none;
+}
 
 /*animation*/
 
