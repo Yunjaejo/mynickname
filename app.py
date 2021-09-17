@@ -10,8 +10,8 @@ app = Flask(__name__)
 SECRET_KEY = 'TEAM19'
 
 client = MongoClient('localhost', 27017)
-# db = client.hh99_nickname # db연결
-db = client.nickname
+db = client.hh99_nickname # db연결
+# db = client.nickname
 
 
 
@@ -48,7 +48,7 @@ def sign_in():
     if result is not None:
         payload = {
          'id': username_receive,
-         'exp': datetime.utcnow() + timedelta(seconds=60)  # 로그인 24시간 유지
+         'exp': datetime.utcnow() + timedelta(seconds=60 * 60)  # 로그인 24시간 유지
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
@@ -84,7 +84,6 @@ def check_dup():
 
 @app.route('/get_mynick', methods=['GET'])
 def get_mynick():
-    # nickname = list(db.hh99_nickname.find({'class':'adj'}, {'_id': False})) # 윤재님 DB
     nickname = list(db.wordsdb.find({}, {'_id': False}))    # 우석 개인 DB
     return jsonify({'all_nickname': nickname})
 
