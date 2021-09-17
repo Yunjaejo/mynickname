@@ -5,11 +5,13 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:url"                content="http://mynickname.shop/" />
-<meta property="og:type"               content="website" />
-<meta property="og:title"              content="내 이름을 정해줘!" />
-<meta property="og:description"        content="닉네임을 못골랐어? 들어와!" />
-<meta property="og:image"              content="../static/img.ogIMG.png" />
+        <meta property="og:url"                content="http://mynickname.shop/" />
+        <meta property="og:type"               content="website" />
+        <meta property="og:title"              content="내 이름을 정해줘!" />
+        <meta property="og:description"        content="닉네임을 못골랐어? 들어와!" />
+        <meta property="og:image"              content="{{ url_for('static', filename='ogIMG.png') }}" />
+
+
         <title>내 이름을 정해줘!</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
