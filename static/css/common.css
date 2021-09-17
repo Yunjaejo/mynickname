@@ -104,8 +104,3 @@ input[type="text"], input[type="password"]{
   .checks input:checked ~ .checkmark:after{
     display:block;
   }/*체크시 체크전 박스 제거*/
-  
-
-
-
-

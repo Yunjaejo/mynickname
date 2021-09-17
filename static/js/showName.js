@@ -11,7 +11,7 @@ $(document).ready(function () {
     //저장 알림창 닫기
     $('#box .close').click(function () {
         $('#saveName').hide();
-        location.href = "get_name.html";
+        location.reload();
     });
 
 });

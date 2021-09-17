@@ -15,83 +15,105 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <script type="text/javascript" src="./jquery.cookie.js"></script>
-        <script>
-            function sign_in() {
-                let user_id = $('#user-id').val()
-                let user_pw = $('#user-pw').val()
-                if (user_id == "") {
-                    // alert("아이디를 입력하세요")
-                    $('#signIn #wrong').text('아이디를 입력해줘!')
-                    return
-                } else if (user_pw == "") {
-                    // alert("비밀번호를 입 력하세요")
-                    $('#signIn #wrong').text('비밀번호를 입력해줘!')
-                }
-                $.ajax({
-                    type: "POST",
-                    url: "/api/sign_in",
-                    data: {
-                        id_give: $('#user-id').val(),
-                        pw_give: $('#user-pw').val()
-                    },
-                    success: function (response) {
-                        if (response['result'] == 'success') {
-                            $.cookie('mytoken', response['token']);
-                            $.cookie('id', $('#user-id').val()); //쿠키로 유저 아이디 저장
-                            window.location.href = '/ChooseMyname'
-                            alert("로그인 성공")
+    <script>
+        function is_nickname(asValue) {
+            var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/;
+            return regExp.test(asValue);
+        }
 
-                        } else {
-                            // alert(response['msg'])
-                            $('#signIn #wrong').text('아이디, 또는 비밀번호가 잘못 입력됐어!')
-                            window
-                                .location
-                                .reload()
-                        }
-                    }
-                })
-            }
-            function sign_up() {
-            let user_id = $('#up-user-id').val()
-            let user_pw = $('#up-user-pw').val()
-            let user_pw2 = $('#up-user-pw2').val()
+        function is_password(asValue) {
+            var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
+            return regExp.test(asValue);
+        }
 
-            if (user_id == "") {
+        {#function id_add(){#}
+        {#   let id = $.cookie('id');#}
+        {##}
+        {#    $.ajax({#}
+        {#            type: "POST",#}
+        {#            url: "/sign_up/save",#}
+        {#            data: {#}
+        {#                username_give: id.#}
+        {#            },#}
+        {#            success: function (response) {#}
+        {#                alert("회원가입을 축하드립니다!")#}
+        {#                window.location.replace("/login")#}
+        {#            }#}
+        {#       })#}
+        {#    }#}
+
+
+
+        function sign_up() {
+            let username = $("#up-user-id").val()
+            let password = $("#up-user-pw").val()
+            let password2 = $("#up-user-pw2").val()
+            console.log(username, password, password2)
+
+           if (username == "") {
                 // alert("아이디를 입력하세요")
                 $('.suID #wrong').text('아이디를 입력해줘!')
                 return false
-            }else if (user_pw == "") {
+           }else if (password == "") {
                 // alert("비밀번호를 입력하세요")
                 $('.suPW .wrong').text('비밀번호를 입력해줘!')
                 $('.suPW .wrong').css('color','#ff0000')
                 return false
-            }else if (user_pw != user_pw2) {
+           }else if (password != password2) {
                 // alert("비밀번호를 확인하세요")
                 $('.suPW2 #wrong').text('비밀번호를 확인해줘!')
-                
                 return false
-            }else if (user_id){
+           }$.ajax({
+                type: "POST",
+                url: "/sign_up/save",
+                data: {
+                    username_give: username,
+                    password_give: password
+                },
+                success: function (response) {
+                    alert("회원가입을 축하드립니다!")
+                    window.location.replace("/login")
+                }
+           });
 
+        }
+
+        function sign_in() {
+            let username = $('#user-id').val()
+            let password = $('#user-pw').val()
+            if (username == "") {
+                // alert("아이디를 입력하세요")
+                $('#signIn #wrong').text('아이디를 입력해줘!')
+                return
+            } else if (password == "") {
+                // alert("비밀번호를 입 력하세요")
+                $('#signIn #wrong').text('비밀번호를 입력해줘!')
             }
             $.ajax({
                 type: "POST",
-                url: "/api/sign_up",
+                url: "/sign_in",
                 data: {
-                    id_give: user_id,
-                    pw_give: user_pw,
-                    pw2_give: user_pw2
+                    username_give: username,
+                    password_give: password
                 },
                 success: function (response) {
-                    alert(response["msg"])
-                    window.location.href = '/'
+                    if (response['result'] == 'success') {
+                        $.cookie('mytoken', response['token'], {path: '/'});
+                        window.location.replace("/")
+                    } else {
+                        alert(response['msg'])
+                    }
                 }
-            })
+            });
         }
-                        
-                
-               
-        </script>
-    </head>
+
+
+
+
+
+    </script>
+
+</head>
     <body>
         <h1 class="animate__animated animate__jackInTheBox">내 이름을 정해줘!</h1>
         <article id="firstpage">
