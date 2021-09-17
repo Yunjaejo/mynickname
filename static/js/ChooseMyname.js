@@ -22,6 +22,7 @@ $(document).ready(function () {
 //고정단어 옵션
     let wordOption = $('.wordOption p');
     $(wordOption).click(function () {
+        
         if ($(this).hasClass('off')) {
             $(this)
                 .removeClass('off')
@@ -31,6 +32,14 @@ $(document).ready(function () {
                 .addClass('off')
                 .removeClass('on');
         }
+        if($('#optionCheck').hasClass('on')){
+            $('.nounOption').removeClass('clickNoun');
+        }else{$('.nounOption').addClass('clickNoun');}
+
+        $('#ex_input').val('');
+        $('#ex_input').focus();
+        $('#ex_input').focusout();
+
         let word = $(this).text();
         if (word == '완전랜덤') {
             let labelText = `완전랜덤으로 내 이름을 정해줘!`;
@@ -41,7 +50,15 @@ $(document).ready(function () {
             $("label[for='ex_input']").text(labelText);
             $('#ex_input').attr('readonly', false);
         }
+        
+        
     });
+
+    
+
+        
+
+
 
     
 //고정단어 input 설정
@@ -106,30 +123,39 @@ $(document).ready(function () {
 
     //저장 알림창 닫기
     $('#box .close').click(function () {
+        $('#saveName').fadeOut();
         $('#saveName').hide();
-        location.reload();
+        
     });
 
     //복사
     $('.Clip').click(function () {
         //클릭한 버튼의 형제 위치에 있는 p태그 안의 텍스트를 가져옵니다.
-        var copyText = $('.NameResult').text();
+        // var copyText = $('.NameResult').text();
 
-        if (!navigator.clipboard) {
-            fallbackCopyTextToClipboard(copyText);
-            return
-        }
-        navigator
-            .clipboard
-            .writeText(copyText)
-            .then(function () {
-                // $('.ClipAlert').css('display','block');
-                $('.ClipAlert').fadeIn(300).delay(400).fadeOut(400);
-                console.log("success");
-            }, function (err) {
-                //복사 실패시
-                console.error("fail", err);
-            });
+        // if (!navigator.clipboard) {
+        //     fallbackCopyTextToClipboard(copyText);
+        //     return
+        // }
+        // navigator
+        //     .clipboard
+        //     .writeText(copyText)
+        //     .then(function () {
+        //         // $('.ClipAlert').css('display','block');
+        //         $('.ClipAlert').fadeIn(300).delay(400).fadeOut(400);
+        //         console.log("success");
+        //     }, function (err) {
+        //         //복사 실패시
+        //         console.error("fail", err);
+        //     });
+        var text = $('.NameResult').text();
+navigator.clipboard.writeText(text).then(function() {
+    $('.ClipAlert').css('display','block');
+                 $('.ClipAlert').fadeIn(300).delay(400).fadeOut(400);
+  console.log('Async: Copying to clipboard was successful!');
+}, function(err) {
+  console.error('Async: Could not copy text: ', err);
+});
         
         
     });
