@@ -10,8 +10,8 @@ app = Flask(__name__)
 SECRET_KEY = 'TEAM19'
 
 client = MongoClient('localhost', 27017)
-db = client.hh99_nickname # db연결
-# db = client.nickname
+# db = client.hh99_nickname # db연결
+db = client.nickname
 
 
 
