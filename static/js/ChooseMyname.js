@@ -116,7 +116,6 @@ $(document).ready(function () {
 
  //Result Page
     $('#saveName').hide();
-    let resultName = $('.NameResult').text();
 
     //저장하기
     $('.saveToMyPage').click(function () {

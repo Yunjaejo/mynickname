@@ -68,9 +68,10 @@
                     if (response["exists"]) {
                         $(".suID .wrong").text("사용할 수 없어!").removeClass("is-safe").addClass("is-danger")
                         $("#up-user-id").focus()
-                    } else {
-                        $(".suID .wrong").text("사용할 수 있어!").removeClass("is-danger").addClass("is-success")
-                    }
+                    } 
+                    // else {
+                    //     $(".suID .wrong").text("사용할 수 있어!").removeClass("is-danger").addClass("is-success")
+                    // }
                     $(".suID .wrong").removeClass("is-loading")
 
                 }
@@ -94,7 +95,7 @@
                 // alert("비밀번호를 확인하세요")
                 $('.suPW2 .wrong').text('비밀번호를 확인해줘!')
                 return false
-           }else if($(".suID .wrong").text() == "사용할 수 있어!"){$.ajax({
+           }else if($(".suID .wrong").text() != "사용할 수 없어!"){$.ajax({
                 type: "POST",
                 url: "/sign_up/save",
                 data: {
