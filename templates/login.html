@@ -42,6 +42,39 @@
         {#       })#}
         {#    }#}
 
+        function check_dup() {
+            let username = $("#up-user-id").val()
+            console.log(username)
+            if (username == "") {
+                $("#help-id").text("아이디를 입력해줘!").removeClass("is-safe").addClass("is-danger")
+                $("#up-user-id").focus()
+                return;
+            }
+            if (!is_nickname(username)) {
+                $("#help-id").text("4-10자 길이로 해야해!").removeClass("is-safe").addClass("is-danger")
+                $("#up-user-id").focus()
+                return;
+            }
+            $("#help-id").addClass("is-loading")
+            $.ajax({
+                type: "POST",
+                url: "/sign_up/check_dup",
+                data: {
+                    username_give: username
+                },
+                success: function (response) {
+
+                    if (response["exists"]) {
+                        $("#help-id").text("사용할 수 없어!").removeClass("is-safe").addClass("is-danger")
+                        $("#up-user-id").focus()
+                    } else {
+                        $("#help-id").text("사용할 수 있어!").removeClass("is-danger").addClass("is-success")
+                    }
+                    $("#help-id").removeClass("is-loading")
+
+                }
+            });
+        }
 
 
         function sign_up() {
@@ -149,13 +182,18 @@
 
                 <section id="signUp">
 
-                    <button class="back"></button>
+                    <button class="back" ></button>
 
                     <div class="suID">
                         <p>ID</p>
                         <div class="textInput">
                             <input type="text" id="up-user-id">
                             <button class="textClear"></button>
+                            <div class="control">
+                            <button onclick="check_dup()"> <span style="color: black">중복확인</span></button>
+                            </div>
+                            <p id="help-id" class="help is-hidden"></p>
+                            <p id="help-id-login" class="help is-danger"></p>
                             <span class="fontSunflower " id="wrong"></span>
                         </div>
                     </div>
