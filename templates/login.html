@@ -26,23 +26,6 @@
             return regExp.test(asValue);
         }
 
-        {#function id_add(){#}
-        {#   let id = $.cookie('id');#}
-        {##}
-        {#    $.ajax({#}
-        {#            type: "POST",#}
-        {#            url: "/sign_up/save",#}
-        {#            data: {#}
-        {#                username_give: id.#}
-        {#            },#}
-        {#            success: function (response) {#}
-        {#                alert("회원가입을 축하드립니다!")#}
-        {#                window.location.replace("/login")#}
-        {#            }#}
-        {#       })#}
-        {#    }#}
-
-
 
         function sign_up() {
             let username = $("#up-user-id").val()
