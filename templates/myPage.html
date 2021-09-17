@@ -14,34 +14,38 @@
 
         <script>
 
-            // function nick_listing() {
-            //     // 주문목록 보기 API 연결
-            //     $.ajax({
-            //         type: "GET",
-            //         url: "/order",
-            //         data: {},
-            //         success: function (response) {
-            //             let orders = response['orders']
-            //             for (let i = 0; i < orders.length; i++) {
-            //                 let name = orders[i]['name']
-            //                 let count = orders[i]['count']
-            //                 let address = orders[i]['address']
-            //                 let phone = orders[i]['phone']
-            //
-            //                 let temp_html = `<li>
-            //                 <p id="ListSavedName">{}</p>
-            //                 <div>
-            //                     <button class="ListCopy">복사</button>
-            //                     <button class="ListDel">삭제</button>
-            //                 </div>
-            //                 <span class="line"></span>
-            //             </li>`
-            //
-            //                 $('#orders-box').append(temp_html)
-            //             }
-            //         }
-            //     })
-            // }
+            function view_nick() {
+                $.ajax({
+                    type: "GET",
+                    url: "/view_mynick",
+                    data: {},
+                    success: function (response) {
+                        let allnick = response['mynicks']
+                        for (let i = 0; i < 8; i++) {
+                            let mynicks = allnick[i]['nick']
+
+                            console.log(mynicks)
+
+                            let temp_html = `<li>
+                                                <p id="ListSavedName">${mynicks}</p>
+                                                <div>
+                                                    <button class="ListCopy">복사</button>
+                                                    <button class="ListDel">삭제</button>
+                                                </div>
+                                                <span class="line"></span>
+                                            </li>`
+
+                            $('#nicksList').append(temp_html)
+                        }
+
+                    }
+                })
+            }
+
+            $(document).ready(function () {
+                view_nick();
+            });
+
 
             $.ajax({type: "GET", url: "", data: {}, success: function (response) {}})
 
@@ -57,7 +61,7 @@
     <body>
 
         <article>
-            <a href="/ChooseMyname" id="GoToChoose">내 이름을 정해줘</a>
+            <a href="/" id="GoToChoose">내 이름을 정해줘</a>
 
             <section class="MyPageBox">
 
@@ -71,71 +75,71 @@
                 <p class="can">8개까지만 저장할 수 있어!</p>
                 <section id="NameList">
 
-                    <ul>
-                        <li>
-                            <p id="ListSavedName">무시무시한 감자</p>
-                            <div>
-                                <button class="ListCopy">복사</button>
-                                <button class="ListDel">삭제</button>
-                            </div>
-                            <span class="line"></span>
-                        </li>
-                        <li>
-                            <p id="ListSavedName">무시무시한 감자</p>
-                            <div>
-                                <button class="ListCopy">복사</button>
-                                <button class="ListDel">삭제</button>
-                            </div>
-                            <span class="line"></span>
-                        </li>
-                        <li>
-                            <p id="ListSavedName">무시무시한 감자</p>
-                            <div>
-                                <button class="ListCopy">복사</button>
-                                <button class="ListDel">삭제</button>
-                            </div>
-                            <span class="line"></span>
-                        </li>
-                        <li>
-                            <p id="ListSavedName">무시무시한 감자</p>
-                            <div>
-                                <button class="ListCopy">복사</button>
-                                <button class="ListDel">삭제</button>
-                            </div>
-                            <span class="line"></span>
-                        </li>
-                        <li>
-                            <p id="ListSavedName">무시무시한 감자</p>
-                            <div>
-                                <button class="ListCopy">복사</button>
-                                <button class="ListDel">삭제</button>
-                            </div>
-                            <span class="line"></span>
-                        </li>
-                        <li>
-                            <p id="ListSavedName">무시무시한 감자</p>
-                            <div>
-                                <button class="ListCopy">복사</button>
-                                <button class="ListDel">삭제</button>
-                            </div>
-                            <span class="line"></span>
-                        </li>
-                        <li>
-                            <p id="ListSavedName">무시무시한 감자</p>
-                            <div>
-                                <button class="ListCopy">복사</button>
-                                <button class="ListDel">삭제</button>
-                            </div>
-                            <span class="line"></span>
-                        </li>
-                        <li>
-                            <p id="ListSavedName">무시무시한 감자</p>
-                            <div>
-                                <button class="ListCopy">복사</button>
-                                <button class="ListDel">삭제</button>
-                            </div>
-                            <span class="line"></span>
-                        </li>
+                    <ul id="nicksList">
+<!--                        <li>-->
+<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
+<!--                            <div>-->
+<!--                                <button class="ListCopy">복사</button>-->
+<!--                                <button class="ListDel">삭제</button>-->
+<!--                            </div>-->
+<!--                            <span class="line"></span>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
+<!--                            <div>-->
+<!--                                <button class="ListCopy">복사</button>-->
+<!--                                <button class="ListDel">삭제</button>-->
+<!--                            </div>-->
+<!--                            <span class="line"></span>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
+<!--                            <div>-->
+<!--                                <button class="ListCopy">복사</button>-->
+<!--                                <button class="ListDel">삭제</button>-->
+<!--                            </div>-->
+<!--                            <span class="line"></span>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
+<!--                            <div>-->
+<!--                                <button class="ListCopy">복사</button>-->
+<!--                                <button class="ListDel">삭제</button>-->
+<!--                            </div>-->
+<!--                            <span class="line"></span>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
+<!--                            <div>-->
+<!--                                <button class="ListCopy">복사</button>-->
+<!--                                <button class="ListDel">삭제</button>-->
+<!--                            </div>-->
+<!--                            <span class="line"></span>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
+<!--                            <div>-->
+<!--                                <button class="ListCopy">복사</button>-->
+<!--                                <button class="ListDel">삭제</button>-->
+<!--                            </div>-->
+<!--                            <span class="line"></span>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
+<!--                            <div>-->
+<!--                                <button class="ListCopy">복사</button>-->
+<!--                                <button class="ListDel">삭제</button>-->
+<!--                            </div>-->
+<!--                            <span class="line"></span>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <p id="ListSavedName">무시무시한 감자</p>-->
+<!--                            <div>-->
+<!--                                <button class="ListCopy">복사</button>-->
+<!--                                <button class="ListDel">삭제</button>-->
+<!--                            </div>-->
+<!--                            <span class="line"></span>-->
+<!--                        </li>-->
 
                     </ul>
                 </section>

@@ -85,16 +85,18 @@ def get_mynick():
 def get_myname():
     return render_template('myPage.html') # 마이 페이지
 
+# 닉네임 db에 저장
 @app.route('/save_mynick', methods=['POST', 'GET'])
 def save_nick():
     nick_receive = request.form['nick_give']
     cookieId_receive = request.form['cookieId_give']
 
-    id_list = list(db.userdb.find({'cookieId': cookieId_receive}, {'_id': False}))
+    id_list = list(db.usersdb.find({'cookieId': cookieId_receive}, {'_id': False}))
 
     id_count = len(id_list)
 
     print(id_count)
+
 
     if id_count < 8:
         doc = {
@@ -104,18 +106,21 @@ def save_nick():
         db.mynick.insert_one(doc)
     else:
         delete_nick = id_list[0]
-        db.userdb.delete_one(delete_nick)
+        db.usersdb.delete_one(delete_nick)
         doc = {
             'cookieId': cookieId_receive,
             'nick': nick_receive
         }
-        db.userdb.insert_one(doc)
+        db.mynick.insert_one(doc)
 
 # 마이페이지에 닉네임 보여주기
-@app.route('/order', methods=['GET'])
+@app.route('/view_mynick', methods=['GET'])
 def view_nick():
-    nick = list(db.mynick.find({},{'_id':False}))
-    return jsonify({'nick':nick})
+
+    mynicks = list(db.mynick.find({'cookieId': request.cookies.get('id')}, {'_id': False}))
+
+    return jsonify({'mynicks': mynicks})
+
 
 
 if __name__ == '__main__':
