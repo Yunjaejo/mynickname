@@ -20,12 +20,12 @@ $('#signUp .back').click(function(){
 });
 
 
-//회원가입창에서 값 입력시 경고문 해제
+// 회원가입창에서 값 입력시 경고문 해제
 $('.suID input').on("change keyup paste", function(){
-    $('.suID #wrong').css('opacity','0');
+    $('.suID .wrong').text('');
 })
 $('.suPW input').on("change keyup paste", function(){
-    $('.suPW .wrong').css('opacity','0');
+    $('.suPW .wrong').text('');
 })
 
 });
