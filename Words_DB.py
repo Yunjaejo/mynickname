@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from pymongo import MongoClient
 
 # client = MongoClient('localhost', 27017) # db 로컬
-client = MongoClient('mongodb://team19:team19@localhost', 27017) # db aws
+client = MongoClient('mongodb://test:test@localhost', 27017) # db aws
 db = client.hh99_nickname # db연결
 
 # db = client.nickname
