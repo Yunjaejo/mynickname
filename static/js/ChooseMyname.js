@@ -135,53 +135,8 @@ $(document).ready(function () {
     //복사
 
 
-    function copyToClipboard(textToCopy) {
-        // navigator clipboard api needs a secure context (https)
-        if (navigator.clipboard && window.isSecureContext) {
-            // navigator clipboard api method'
-            return navigator.clipboard.writeText(textToCopy);
-        } else {
-            // text area method
-            let textArea = document.createElement("textarea");
-            textArea.value = textToCopy;
-            // make the textarea out of viewport
-            textArea.style.position = "fixed";
-            textArea.style.left = "-999999px";
-            textArea.style.top = "-999999px";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            return new Promise((res, rej) => {
-                // here the magic happens
-                document.execCommand('copy') ? res() : rej();
-                textArea.remove();
-            });
-        }
-    }
-
-    $('.Clip').click(function () {
-        //클릭한 버튼의 형제 위치에 있는 p태그 안의 텍스트를 가져옵니다.
-        var copyText = $('.NameResult').text();
-
-        // if (!navigator.clipboard) {
-        //     fallbackCopyTextToClipboard(copyText);
-        //     return
-        // }
-        // navigator
-        //     .clipboard
-        //     .writeText(copyText)
-        //     .then(function () {
-        //         // $('.ClipAlert').css('display','block');
-        //         $('.ClipAlert').fadeIn(300).delay(400).fadeOut(400);
-        //         console.log("success");
-        //     }, function (err) {
-        //         //복사 실패시
-        //         console.error("fail", err);
-        //     });
-        
-        
-        
-    });
+    
+   
 
     $('.Reset').click(function () {
         location.reload();

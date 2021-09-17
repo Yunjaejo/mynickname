@@ -1,14 +1,22 @@
 @charset "utf-8";
 
+@keyframes moveUp {
+
+    0%{}
+    100%{}
+    
+}
+
 #GoToChoose {
     height: 3rem;
     width: 62%;
     min-width: 480px;
     margin: 0 auto;
-    padding-top: 40px;
+    padding-top: 4vh;
     display: block;
     text-align: left;
 }
+
 #GoToChoose a{
     font-size: 3rem;
 }

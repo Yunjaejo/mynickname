@@ -13,6 +13,17 @@
 100%{opacity: 1;}
 }
 
+@keyframes sizeUp {
+  0%{transform: scale(0);}
+  100%{transform: scale(1);}
+}
+
+.boxAni{
+  animation: sizeUp 1.5s ease 1s;
+  /* animation: FadeShow 1.5s ease 1s; */
+  animation-fill-mode: forwards;
+}
+
 
 /**/
 
@@ -222,6 +233,7 @@ label > p {
 /* random name result page */
 
 #ResultPage {
+  animation:FadeShow 2s ease;
   width: 100%;
   height: 100%;
   display: none;
@@ -255,6 +267,7 @@ label > p {
   margin-bottom: 20px;
 }
 .textBox div{
+  transform: scale(0);
   display: flex;
   justify-content: center;
   align-items: center;
