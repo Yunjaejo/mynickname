@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 SECRET_KEY = 'TEAM19'
 
-client = MongoClient('localhost', 27017) # db 로컬
-# client = MongoClient('mongodb://team19:team19@localhost', 27017) # db aws
+# client = MongoClient('localhost', 27017) # db 로컬
+client = MongoClient('mongodb://test:test@localhost', 27017) # db aws
 db = client.hh99_nickname # db연결
 # db = client.nickname
 
@@ -132,4 +132,3 @@ def view_nick():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
-
