@@ -131,6 +131,8 @@ label > p {
 
 .wordOption .off {opacity: .5;}
 
+.clickNoun{opacity:0;pointer-events: none;}
+
 .wordOption span {
     display: inline-block;
     width: 0px;
