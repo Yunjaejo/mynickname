@@ -1,6 +1,9 @@
+/* 모든 페이지에 공통으로 적용되는 css 파일 */
+
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Sunflower:wght@300&display=swap');
-/*resets*/
+
+/*기본으로 지정된 값들을 초기화한 뒤 모든 페이지에 공통으로 적용되는 부분을 수정*/
 body,p,ol,dl,dt,dd,div,ul,li,header,h1,h2,h3,h4,h5,h6,table, tr,td,th,form,fieldlist,input,label,textarea,select,button,footer{margin: 0; padding: 0; font-style: normal;}
 body,button,input{font-family: "Jua",sans-serif; color: #fff;}
 h1,h2,h3,h4,h5 {color:#fff; line-height: 1;}
@@ -17,90 +20,43 @@ html{font-size: 12px; height: 100%;} /*1rem = 12px*/
 body{background: #3864FF; overflow-x: hidden; height: 100%;}
 body {margin: 0;}   
 
+/* 사용횟수가 적은 폰트는 클래스를 넣으면 사용할 수 있도록 분리 */
 .fontSunflower {
 font-family: 'Sunflower',sans-serif;
 }
 
-/*animation*/
-@keyframes buttonAni {
-  0%{transform: scale(1);}
-  50%{transform: scale(.9);}
-  100%{transform: scale(1);}
-}
-.buttonGradientAni {
-  animation: buttonAni 3s ease infinite;
-} 
 
-@keyframes ShowResult {
-  0%{transform: scale(0);}
-  100%{transform: scale(1);}
-}
-.ShowAni {
-  animation: ShowResult 2s ease;
-}
-
-/*Text Input*/
-
-.textInput{
+/*Text Input 박스 기본 디자인 변경*/
+.textInput {
     position: relative;
 }
 
-input[type="text"], input[type="password"]{
+input[type="text"],
+input[type="password"] {
     width: 100%;
     height: auto;
     line-height: normal;
-    padding: 10px 20px 10px;
+    padding: 10px 20px;
     box-sizing: border-box;
     box-shadow: inset -3px 3px 4px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
-    outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */ 
-    -webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */ 
-    -moz-appearance: none; appearance: none;
-  }
+    outline-style: none;
+    /* 포커스시 발생하는 효과 제거를 원한다면 */
+    -webkit-appearance: none;
+    /* 브라우저별 기본 스타일링 제거 */
+    -moz-appearance: none;
+    appearance: none;
+}
 
-.textClear{
+/* 클리어버튼 */
+.textClear {
     position: absolute;
     width: 20px;
     height: 20px;
-    background: url(../img/inputTextClearGray.svg);
+    background: url("../img/inputTextClearGray.svg");
     right: 20px;
     top: 10.5px;
     display: none;
-  }
+}
 
 
-/*체크박스*/
-
-  .checks{
-    position:relative;
-    cursor:pointer;
-  }/*라벨 디자인*/
-
-  .checks input{
-    position:absolute;
-    opacity:0;
-    cursor:pointer;
-    height:20px;
-    width:20px;
-  }/*기본체크박스 제거*/
-  
-  .checkmark{
-    position:absolute;
-    width: 20px;
-    height: 20px;
-    background: url(../img/CheckOFF.svg) no-repeat;
-  }/*새로운 체크박스 생성*/
-  .checks input:checked ~ .checkmark{
-    width: 20px;
-    height: 20px;
-    border:none;
-    background:url(../img/CheckON.svg);
-  }/*체크시 변경되는 부분*/
-  .checkmark:after{
-    content:"";
-    position:absolute;
-    display:none;
-  }
-  .checks input:checked ~ .checkmark:after{
-    display:block;
-  }/*체크시 체크전 박스 제거*/
