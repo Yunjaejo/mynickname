@@ -22,7 +22,7 @@
 <script>
     $(document).ready(function () {
 
-        $("input[id=ex_input]").keyup(function (event) {
+        $("input[id=ex_input]").keyup(function (event) {                            {# text 입력 시 한글이 아니면 alert #}
 
             regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
             v = $(this).val();
@@ -40,45 +40,45 @@
             url: "/get_mynick",
             data: {},
             success: function (response) {
-                let noun_words = new Array();
-                let adj_words = new Array();
-                let animal_words = new Array();
-                let fruits_words = new Array();
-                let animal_fruits_words = new Array();
+                let noun_words = new Array();                                       {# 명사 리스트 생성 #}
+                let adj_words = new Array();                                        {# 형용사 리스트 생성 #}
+                let animal_words = new Array();                                     {# 동물 리스트 생성 #}
+                let fruits_words = new Array();                                     {# 과일 리스트 생성 #}
+                let animal_fruits_words = new Array();                              {# 동물+과일 리스트 생성 #}
 
-                let adj_count = 0
-                let noun_count = 0
-                let animal_count = 0
-                let fruits_count = 0
+                let adj_count = 0                                                   {# 형용사 개수 카운트 #}
+                let noun_count = 0                                                  {# 명사 개수 카운트 #}
+                let animal_count = 0                                                {# 동물 개수 카운트 #}
+                let fruits_count = 0                                                {# 과일 개수 카운트 #}
 
-                let nickname = response['all_nickname']
+                let all_words = response['all_nickname']                            {# 모든 글자 DB 받아옴 #}
 
-                for (let i = 0; i < nickname.length; i++) {
+                for (let i = 0; i < all_words.length; i++) {
 
-                    let words = nickname[i]['word']
-                    let type = nickname[i]['class']
+                    let words = all_words[i]['word']
+                    let type = all_words[i]['class']
 
-                    if (type == 'adj') {
+                    if (type == 'adj') {                                            {# adj_words list에 형용사 저장 #}
                         adj_count += 1
                         adj_words[adj_count] = words;
-                    } else if (type == 'noun') {
+                    } else if (type == 'noun') {                                    {# noun_words list에 명사 저장 #}
                         noun_count += 1
-                        noun_words[noun_count] = words;
-                    } else if (type == 'animal') {
+                        noun_words[noun_count] = words;                             {# animal_words list에 동물 저장 #}
+                    } else if (type == 'animal') {                                  {# animal_fruits_words list에 동물 저장 #}
                         animal_count += 1
                         animal_words[animal_count] = words;
                         animal_fruits_words[animal_count] = words;
                     } else {
                         fruits_count += 1
-                        fruits_words[fruits_count] = words;
-                        animal_fruits_words[fruits_count + animal_count] = words;
+                        fruits_words[fruits_count] = words;                         {# fruits_words list에 과일 저장 #}
+                        animal_fruits_words[fruits_count + animal_count] = words;   {# animal_fruits_words list에 과일 저장 #}
                     }
                 }
 
-                let target = $('.on').html()
-                let word_counting = $('.count').val()
-                let animal_check = $('.animal input').hasClass('on')
-                let fruits_check = $('.fruits input').hasClass('on')
+                let target = $('.on').html()                                        {# 형용사, 명사, 완전랜덤 옵션 구분 #}
+                let word_counting = $('.count').val()                               {# 최대 글자수 옵션 구분 #}
+                let animal_check = $('.animal input').hasClass('on')                {# 동물 체크박스 옵션 구분 (class가 on이면 True) #}
+                let fruits_check = $('.fruits input').hasClass('on')                {# 과일 체크박스 옵션 구분 (class가 on이면 True) #}
                 let ResultName;
 
                 function goToResult(){
@@ -92,29 +92,29 @@
                     return Math.floor(Math.random() * a + 1);
                 }
 
-                if (target == '형용사') {
-                    let wish_adj = $('#ex_input').val()
+                if (target == '형용사') {                                                                      {# 형용사 옵션 선택 #}
+                    let wish_adj = $('#ex_input').val()                                                       {# 원하는 형용사를 받아옴 #}
                     let boolean = Boolean(wish_adj != '');
                     if (animal_check != true) {
                         if (fruits_check != true) {
-                            if (boolean) {
-                                let ran_noun_num = mathRandom(25416);
-                                let adj_len1 = wish_adj.length
-                                let noun_len1 = noun_words[ran_noun_num].length
-                                if (adj_len1 + noun_len1 <= word_counting) {
-                                    ResultName = wish_adj+' ' +noun_words[ran_noun_num];
+                            if (boolean) {                                                                    {# 과일 Flase, 동물 False, 형용사가 빈칸이 아니면 #}
+                                let ran_noun_num = mathRandom(25416);                                         {# 25416 까지의 난수 생성 (명사 개수) #}
+                                let adj_len1 = wish_adj.length                                                {# 희망하는 형용사의 글자 수 #}
+                                let noun_len1 = noun_words[ran_noun_num].length                               {# 랜덤 명사의 글자 수 #}
+                                if (adj_len1 + noun_len1 <= word_counting) {                                  {# 형용사+명사 글자수가 최대글자수 보다 작거나 같으면 #}
+                                    ResultName = wish_adj+' ' +noun_words[ran_noun_num];                      {# 희망하는 형용사 + 랜덤 명사 출력 #}
                                     goToResult();
                                 }
                             } else {
-                                alert('형용사를 입력해줘!')
+                                alert('형용사를 입력해줘!')                                                      {# 텍스트가 공백이면 Alert #}
                             }
                         } else {
-                            if (boolean) {
-                                let ran_fruits_num = mathRandom(51);
-                                let adj_len2 = wish_adj.length
-                                let fruits_len2 = fruits_words[ran_fruits_num].length
-                                if (adj_len2 + fruits_len2 <= word_counting) {
-                                    ResultName = wish_adj+' ' +fruits_words[ran_fruits_num];
+                            if (boolean) {                                                                    {# 과일 True, 동물 False, 형용사가 빈칸이 아니면 #}
+                                let ran_fruits_num = mathRandom(51);                                          {# 51 까지의 난수 생성 (과일 개수) #}
+                                let adj_len2 = wish_adj.length                                                {# 희망하는 형용사의 글자 수 #}
+                                let fruits_len2 = fruits_words[ran_fruits_num].length                         {# 랜덤 과일의 글자 수 #}
+                                if (adj_len2 + fruits_len2 <= word_counting) {                                {# 형용사+과일 글자수가 최대글자수 보다 작거나 같으면 #}
+                                    ResultName = wish_adj+' ' +fruits_words[ran_fruits_num];                  {# 희망하는 형용사 + 랜덤 과일 출력 #}
                                     goToResult();
                                 }
                             } else {
@@ -123,24 +123,24 @@
                         }
                     } else {
                         if (fruits_check != true) {
-                            if (boolean) {
-                                let ran_animal_num = mathRandom(141);
-                                let adj_len3 = wish_adj.length
-                                let animal_len3 = animal_words[ran_animal_num].length
-                                if (adj_len3 + animal_len3 <= word_counting) {
-                                    ResultName = wish_adj+' ' +animal_words[ran_animal_num];
+                            if (boolean) {                                                                    {# 과일 False, 동물 True, 형용사가 빈칸이 아니면 #}
+                                let ran_animal_num = mathRandom(141);                                         {# 141 까지의 난수 생성 (동물 개수) #}
+                                let adj_len3 = wish_adj.length                                                {# 희망하는 형용사의 글자 수 #}
+                                let animal_len3 = animal_words[ran_animal_num].length                         {# 랜덤 동물의 글자 수 #}
+                                if (adj_len3 + animal_len3 <= word_counting) {                                {# 형용사+동물 글자수가 최대글자수 보다 작거나 같으면 #}
+                                    ResultName = wish_adj+' ' +animal_words[ran_animal_num];                  {# 희망하는 형용사 + 랜덤 동물 출력 #}
                                     goToResult();
                                 }
                             } else {
                                 alert('형용사를 입력해줘!')
                             }
                         } else {
-                            if (boolean) {
-                                let ran_ani_fru_num = mathRandom(192);
-                                let adj_len4 = wish_adj.length
-                                let ani_fru_len4 = animal_fruits_words[ran_ani_fru_num].length
-                                if (adj_len4 + ani_fru_len4 <= word_counting) {
-                                    ResultName = wish_adj+' ' +animal_fruits_words[ran_ani_fru_num];
+                            if (boolean) {                                                                    {# 과일 True, 동물 True, 형용사가 빈칸이 아니면 #}
+                                let ran_ani_fru_num = mathRandom(192);                                        {# 192 까지의 난수 생성 ((동물+과일) 개수) #}
+                                let adj_len4 = wish_adj.length                                                {# 희망하는 형용사의 글자 수 #}
+                                let ani_fru_len4 = animal_fruits_words[ran_ani_fru_num].length                {# 랜덤 (동물+과일)의 글자 수 #}
+                                if (adj_len4 + ani_fru_len4 <= word_counting) {                               {# 형용사+(동물+과일) 글자수가 최대글자수 보다 작거나 같으면 #}
+                                    ResultName = wish_adj+' ' +animal_fruits_words[ran_ani_fru_num];          {# 희망하는 형용사 + 랜덤(동물+과일) 출력 #}
                                     goToResult();
                                 }
                             } else {
@@ -148,26 +148,26 @@
                             }
                         }
                     }
-                } else if (target == '명사') {
-                    let wish_noun = $('#ex_input').val()
-                    if (wish_noun != '') {
-                    let ran_adj_num = mathRandom(181);
-                    let adj_len5 = adj_words[ran_adj_num].length
-                    let noun_len5 = wish_noun.length
-                        if (adj_len5 + noun_len5 <= word_counting) {
-                            ResultName = adj_words[ran_adj_num]+' ' +wish_noun;
+                } else if (target == '명사') {                                                                 {# 명사 옵션 선택 #}
+                    let wish_noun = $('#ex_input').val()                                                      {# 원하는 명사를 받아옴 #}
+                    if (wish_noun != '') {                                                                    {# 명사가 빈칸이 아니면 #}
+                    let ran_adj_num = mathRandom(181);                                                        {# 181 까지의 난수 생성 (형용사 개수) #}
+                    let adj_len5 = adj_words[ran_adj_num].length                                              {# 랜덤 형용사의 글자 수 #}
+                    let noun_len5 = wish_noun.length                                                          {# 희망하는 명사의 글자 수 #}
+                        if (adj_len5 + noun_len5 <= word_counting) {                                          {# 형용사+명사 글자수가 최대글자수 보다 작거나 같으면 #}
+                            ResultName = adj_words[ran_adj_num]+' ' +wish_noun;                               {# 랜덤 형용사 + 희망하는 명사 출력 #}
                             goToResult();
                         }
                     } else {
                         alert('명사를 입력해줘!')
                     }
-                } else {
-                    let ran_adj_num = mathRandom(181);
-                    let ran_noun_num = mathRandom(25416);
-                    let adj_len6 = adj_words[ran_adj_num].length
-                    let noun_len6 = noun_words[ran_noun_num].length
-                    if (adj_len6 + noun_len6 <= word_counting) {
-                        ResultName = adj_words[ran_adj_num] +' ' + noun_words[ran_noun_num];
+                } else {                                                                                      {# 완전랜덤 옵션 선택 #}
+                    let ran_adj_num = mathRandom(181);                                                        {# 181 까지의 난수 생성 (형용사 개수) #}
+                    let ran_noun_num = mathRandom(25416);                                                     {# 25416 까지의 난수 생성 (명사 개수) #}
+                    let adj_len6 = adj_words[ran_adj_num].length                                              {# 랜덤 형용사의 글자 수 #}
+                    let noun_len6 = noun_words[ran_noun_num].length                                           {# 랜덤 명사의 글자 수 #}
+                    if (adj_len6 + noun_len6 <= word_counting) {                                              {# 형용사+명사 글자수가 최대글자수 보다 작거나 같으면 #}
+                        ResultName = adj_words[ran_adj_num] +' ' + noun_words[ran_noun_num];                  {# 랜덤 형용사 + 랜덤 명사 출력 #}
                         goToResult();
                     }
                 }
@@ -180,7 +180,6 @@
 
 </script>
 <body>
-    <p class="ClipAlert">복사했다!</p>
     <header>
         <a href="/myPage">마이페이지</a>
     </header>
