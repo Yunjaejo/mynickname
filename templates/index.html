@@ -82,14 +82,14 @@
                 let ResultName;
 
                 function goToResult(){
-                    $('.NameResult').text(ResultName);
-                    $('#GetPage').css('display','none');
-                    $('#ResultPage').css('display','flex');
-                    $('.saveAlert').text($('.NameResult').text());
+                    $('.NameResult').text(ResultName);                              {#결과창으로 넘어갈시 닉네임 결과 텍스트 변경#}
+                    $('#GetPage').css('display','none');                            {# 옵션페이지 안보이게하기#}
+                    $('#ResultPage').css('display','flex');                         {# 결과페이지의 css 를 display flex로 변경#}
+                    $('.saveAlert').text($('.NameResult').text());                  {# 저장했을때 뜨는 알림창에 결과닉네임 넣기#}
                 }
 
                 function mathRandom(a){
-                    return Math.floor(Math.random() * a + 1);
+                    return Math.floor(Math.random() * a + 1);                       {# a 이하의 랜덤한 숫자 불러오기 #}
                 }
 
                 if (target == '형용사') {                                                                      {# 형용사 옵션 선택 #}
@@ -274,18 +274,17 @@
 <p id="TempName"></p>
 <script>
     function save_nick() {
-        let nick = $('.NameResult').text()
-        let cookieId = $.cookie('id');
+        let nick = $('.NameResult').text()  //결과 닉네임 가져오기
+        let cookieId = $.cookie('id');      //아이디를 쿠키에 저장
 
         $.ajax({
             type: "POST",
             url: "/save_mynick",
             data: {
                 cookieId_give:cookieId,
-                nick_give:nick},
+                nick_give:nick},            // 쿠키에 저장된 아이디와 닉네임 전달
             success: function (response) {
-                // alert(response["msg"]);
-                // window.location.reload()
+                
             }
 
         })
