@@ -3,13 +3,13 @@ from bs4 import BeautifulSoup
 
 from pymongo import MongoClient
 
-<<<<<<< HEAD
+
 # client = MongoClient('localhost', 27017) # db 로컬
 client = MongoClient('mongodb://test:test@localhost', 27017) # db aws
-=======
+
 client = MongoClient('localhost', 27017) # db 로컬
 # client = MongoClient('mongodb://team19:team19@localhost', 27017) # db aws
->>>>>>> 11984eabb333d04f5bf3ce17e338228a3c166703
+
 db = client.hh99_nickname # db연결
 
 db = client.nickname
